@@ -2,7 +2,7 @@ import React from 'react'
 
 const Browse:React.FC = () => {
   return (
-    <div>:React.FC</div>
+    <div>Browse</div>
   )
 }
 
