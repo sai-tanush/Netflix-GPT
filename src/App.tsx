@@ -19,7 +19,7 @@ function App() {
         //user signed in
         const { uid, email, displayName } = user;
         console.log(`user signed in : uid = ${uid}, email= ${email}, displayName= ${displayName}`);
-        dispatch(addUser({uid: uid, email: email, displayName: displayName}));
+        dispatch(addUser({uid, email, displayName}));
         navigate("/browse");
       }else{
         //User signed out
