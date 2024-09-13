@@ -1,7 +1,7 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../utils/userSlice';
-import { useNavigate } from 'react-router-dom';
 
 const Browse:React.FC = () => {
   const dispatch = useDispatch();
