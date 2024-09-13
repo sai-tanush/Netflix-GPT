@@ -7,7 +7,7 @@ const ForgotPassword: React.FC = () => {
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
   const email = useRef<HTMLInputElement>(null);
 
-  function handleButtonClick() {
+  function handleValidate() {
     if (email.current) {
       console.log("email = ", email.current.value);
       const message = checkValidEmail(email.current.value);
@@ -35,7 +35,7 @@ const ForgotPassword: React.FC = () => {
         />
         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
         <button
-          onClick={handleButtonClick}
+          onClick={handleValidate}
           className="w-full p-2 my-4 bg-red-700 rounded-lg"
         >
           Send Link
