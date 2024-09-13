@@ -9,7 +9,6 @@ const ForgotPassword: React.FC = () => {
 
   function handleValidate() {
     if (email.current) {
-      console.log("email = ", email.current.value);
       const message = checkValidEmail(email.current.value);
       setIsErrorMessage(message);
     }

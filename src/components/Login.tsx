@@ -19,17 +19,13 @@ const Login: React.FC = () => {
   const signUp = isSignUp ? "Already an user!" : "New to Netflix?";
   const signBtn = isSignUp ? "Sign Up" : "Sign In";
   const signUpLink = isSignUp ? "Sign in now" : "Sign up now";
-  console.log("page = ", signBtn);
   function handleLoginPage() {
     setIsSignUp((prevVal) => !prevVal);
   }
 
   function handleValidate() {
     if (email.current && password.current) {
-      console.log("email = ", email.current.value);
-      console.log("password = ", password.current.value);
       const message = checkValidEmail(email.current.value);
-      console.log("mesasge = ", message);
       setIsErrorMessage(message);
 
       if (message) return;
