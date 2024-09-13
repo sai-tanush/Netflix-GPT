@@ -7,6 +7,7 @@ const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
 
+  const name = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
@@ -41,6 +42,7 @@ const Login: React.FC = () => {
         <p className="text-3xl pb-4 pl-2 font-semibold">{signBtn}</p>
         {isSignUp && (
           <input
+            ref={name}
             type="text"
             placeholder="Enter Name"
             className="p-3 my-2 w-full border-2 border-gray-400 bg-transparent rounded-md"
