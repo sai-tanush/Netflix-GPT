@@ -1,12 +1,31 @@
 import { Route, Routes } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { Provider, useDispatch } from "react-redux";
 import Body from "./components/Body";
+import { useEffect } from "react";
 import "./index.css";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
-import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import { auth } from "./utils/firebase";
+import { addUser, removeUser } from "./utils/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //user signed in
+        const { uid, email, displayName } = user;
+        console.log(`user signed in : uid = ${uid}, email= ${email}, displayName= ${displayName}`);
+        dispatch(addUser({uid: uid, email: email, displayName: displayName}));
+      }else{
+        //User signed out
+        console.log("user signed out ");
+        dispatch(removeUser());
+      }
+    })
+  })
   return (
     < div>
     <Provider store={appStore}>
