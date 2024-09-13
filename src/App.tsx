@@ -1,12 +1,11 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import "./index.css";
 import Body from "./components/Body";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
-import appStore from "./utils/appStore";
 import { auth } from "./utils/firebase";
 import { addUser, removeUser } from "./utils/userSlice";
 import Browse from "./components/Browse";
@@ -31,8 +30,7 @@ function App() {
     })
   }, [])
   return (
-    < div>
-    <Provider store={appStore}>
+    < div>    
       <Routes>
         <Route path="/" element={<Body />} />
         <Route path="/login" element={<Login />} />
@@ -40,7 +38,6 @@ function App() {
         <Route path="/browse" element={<Browse />} />
         <Route path="*" element={<Body />} />
       </Routes>
-      </Provider>
     </div>
   );
 }
