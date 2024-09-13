@@ -2,13 +2,13 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import "./index.css";
 import Body from "./components/Body";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import { auth } from "./utils/firebase";
 import { addUser, removeUser } from "./utils/userSlice";
 import Browse from "./components/Browse";
+import "./index.css";
 
 function App() {
   const dispatch = useDispatch();
