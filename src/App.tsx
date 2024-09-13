@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { Provider, useDispatch } from "react-redux";
-import Body from "./components/Body";
 import { useEffect } from "react";
 import "./index.css";
+import Body from "./components/Body";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import appStore from "./utils/appStore";
