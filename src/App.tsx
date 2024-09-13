@@ -1,13 +1,23 @@
+import { Route, Routes } from "react-router-dom";
+import Body from "./components/Body";
 import "./index.css";
+import Login from "./components/Login";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <p className="text-3xl font-bold">
-        Netflix-GPT with React + Typescript + tailwind
-      </p>
+    < div>
+      <Routes>
+        <Route path="/" element={<Body />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="*" element={<Body />} />
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+//-build login page/ signup page and resume from 01:27:16
