@@ -22,7 +22,6 @@ const Login: React.FC = () => {
     if (email.current && password.current) {
       console.log("email = ", email.current.value);
       console.log("password = ", password.current.value);
-      console.log("type of email.current.value = ", typeof email.current.value);
       const message = checkValidEmail(email.current.value);
       setIsErrorMessage(message);
     }
