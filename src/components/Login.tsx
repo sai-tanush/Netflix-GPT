@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 import { checkValidEmail } from "./utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
-import { Link } from "react-router-dom";
 import { auth } from "./utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
@@ -132,4 +132,4 @@ const Login: React.FC = () => {
 
 export default Login;
 
-//01:51:41
+//02:49:00
