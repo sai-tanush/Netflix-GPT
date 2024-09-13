@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { checkValidEmail } from "./utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
 import { Link } from "react-router-dom";
+import { auth } from "./utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
@@ -14,9 +16,9 @@ const Login: React.FC = () => {
   const signUp = isSignUp ? "Already an user!" : "New to Netflix?";
   const signBtn = isSignUp ? "Sign Up" : "Sign In";
   const signUpLink = isSignUp ? "Sign in now" : "Sign up now";
-
+  console.log("page = ", signBtn);
   function handleLoginPage() {
-    setIsSignUp(!isSignUp);
+    setIsSignUp(prevVal => !prevVal);
   }
 
   function handleButtonClick() {
@@ -24,7 +26,45 @@ const Login: React.FC = () => {
       console.log("email = ", email.current.value);
       console.log("password = ", password.current.value);
       const message = checkValidEmail(email.current.value);
+      console.log("mesasge = ", message);
       setIsErrorMessage(message);
+
+      if (message) return;
+
+      if (isSignUp) {
+        //Signup Logic
+        console.log("Entered If case");
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            console.log("user signed in = ", user);
+          })
+          .catch((error) => {
+            //Error Occurs
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setIsErrorMessage(errorCode + "-" + errorMessage);
+          });
+      } else {
+        //Sign in Logic
+        console.log("Entered else case");
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log("User LoggedIn = ", user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setIsErrorMessage(errorCode + "-" + errorMessage);
+          });
+      }
     }
   }
 
@@ -67,12 +107,14 @@ const Login: React.FC = () => {
         >
           {signBtn}
         </button>
-        {!isSignUp && <div className="flex flex-col items-center">
-          <p>OR</p>
-          <Link to="/forgot-password">
-            <p className="cursor-pointer">Forgot password?</p>
-          </Link>
-        </div>}
+        {!isSignUp && (
+          <div className="flex flex-col items-center">
+            <p>OR</p>
+            <Link to="/forgot-password">
+              <p className="cursor-pointer">Forgot password?</p>
+            </Link>
+          </div>
+        )}
         {}
         <p className="text-gray-400 mt-5">
           {signUp}
