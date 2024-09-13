@@ -21,7 +21,7 @@ const Login: React.FC = () => {
     setIsSignUp(prevVal => !prevVal);
   }
 
-  function handleButtonClick() {
+  function handleValidate() {
     if (email.current && password.current) {
       console.log("email = ", email.current.value);
       console.log("password = ", password.current.value);
@@ -102,7 +102,7 @@ const Login: React.FC = () => {
         />
         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
         <button
-          onClick={handleButtonClick}
+          onClick={handleValidate}
           className="w-full p-2 my-4 bg-red-700 rounded-lg"
         >
           {signBtn}
