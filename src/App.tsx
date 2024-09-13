@@ -29,8 +29,7 @@ function App() {
       }
     })
   }, [])
-  return (
-    < div>    
+  return (   
       <Routes>
         <Route path="/" element={<Body />} />
         <Route path="/login" element={<Login />} />
@@ -38,7 +37,6 @@ function App() {
         <Route path="/browse" element={<Browse />} />
         <Route path="*" element={<Body />} />
       </Routes>
-    </div>
   );
 }
 
