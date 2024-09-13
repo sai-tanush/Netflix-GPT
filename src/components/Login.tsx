@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { checkValidEmail } from "./utils/validate";
-import HeaderComponent from "./HeaderComponent";
+import HeaderComponent from "./ui/HeaderComponent";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
-  //const [forgotPassword, setForgotPassword] = useState<boolean>(false);
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -22,10 +22,10 @@ const Login: React.FC = () => {
     if (email.current && password.current) {
       console.log("email = ", email.current.value);
       console.log("password = ", password.current.value);
-      console.log("type of email.current.value = ",typeof(email.current.value));
+      console.log("type of email.current.value = ", typeof email.current.value);
       const message = checkValidEmail(email.current.value);
       setIsErrorMessage(message);
-    }    
+    }
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +68,9 @@ const Login: React.FC = () => {
         </button>
         <div className="flex flex-col items-center">
           <p>OR</p>
-          <p className="cursor-pointer">Forgot password?</p>
+          <Link to="/forgot-password">
+            <p className="cursor-pointer">Forgot password?</p>
+          </Link>
         </div>
         {}
         <p className="text-gray-400 mt-5">
@@ -86,6 +88,5 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
 
 //01:51:41
