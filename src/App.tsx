@@ -25,7 +25,7 @@ function App() {
         dispatch(removeUser());
       }
     })
-  })
+  }, [])
   return (
     < div>
     <Provider store={appStore}>
