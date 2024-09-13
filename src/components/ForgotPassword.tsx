@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { checkValidEmail } from "./utils/validate";
+import { checkValidEmail } from "../utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
 
 const ForgotPassword: React.FC = () => {
@@ -41,7 +41,9 @@ const ForgotPassword: React.FC = () => {
           Send Link
         </button>
         <Link to="/login">
-          <p className="text-gray-400 mt-5">Back to <span className="text-white">Sign in page</span></p>
+          <p className="text-gray-400 mt-5">
+            Back to <span className="text-white">Sign in page</span>
+          </p>
         </Link>
       </form>
     </div>

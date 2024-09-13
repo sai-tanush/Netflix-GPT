@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { Link } from "react-router-dom";
-import { checkValidEmail } from "./utils/validate";
+import { checkValidEmail } from "../utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
@@ -18,7 +21,7 @@ const Login: React.FC = () => {
   const signUpLink = isSignUp ? "Sign in now" : "Sign up now";
   console.log("page = ", signBtn);
   function handleLoginPage() {
-    setIsSignUp(prevVal => !prevVal);
+    setIsSignUp((prevVal) => !prevVal);
   }
 
   function handleValidate() {
@@ -53,7 +56,11 @@ const Login: React.FC = () => {
       } else {
         //Sign in Logic
         console.log("Entered else case");
-        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
@@ -131,5 +138,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-//02:49:00
