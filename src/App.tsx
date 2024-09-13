@@ -26,6 +26,7 @@ function App() {
         //User signed out
         console.log("user signed out ");
         dispatch(removeUser());
+        navigate("/login");
       }
     })
   }, [])
