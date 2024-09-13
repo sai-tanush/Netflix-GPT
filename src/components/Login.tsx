@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { checkValidEmail } from "./utils/validate";
-import HeaderLogo from "./HeaderLogo";
+import HeaderComponent from "./HeaderComponent";
 
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
@@ -34,14 +34,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="absolute">
-      <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/04bef84d-51f6-401e-9b8e-4a521cbce3c5/null/IN-en-20240903-TRIFECTA-perspective_0d3aac9c-578f-4e3c-8aa8-bbf4a392269b_small.jpg"
-        alt="background_img"
-        height="100vh"
-        className="relative bg-gradient-to-b from-black"
-      />
-      <div className="absolute top-0 left-0 w-screen h-[100%] bg-black bg-opacity-70"></div>
-      <HeaderLogo />
+      <HeaderComponent />
       <form
         onSubmit={handleSubmit}
         className="absolute w-1/4 p-12 text-white bg-black top-0 mx-auto left-0 right-0 my-44 rounded-lg bg-opacity-85 "
