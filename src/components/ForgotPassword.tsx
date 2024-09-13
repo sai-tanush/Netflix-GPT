@@ -41,7 +41,7 @@ const ForgotPassword: React.FC = () => {
           Send Link
         </button>
         <Link to="/login">
-          <p className="text-gray-400 mt-5">back to Signin page</p>
+          <p className="text-gray-400 mt-5">Back to <span className="text-white">Sign in page</span></p>
         </Link>
       </form>
     </div>
