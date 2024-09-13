@@ -66,12 +66,12 @@ const Login: React.FC = () => {
         >
           {signBtn}
         </button>
-        <div className="flex flex-col items-center">
+        {!isSignUp && <div className="flex flex-col items-center">
           <p>OR</p>
           <Link to="/forgot-password">
             <p className="cursor-pointer">Forgot password?</p>
           </Link>
-        </div>
+        </div>}
         {}
         <p className="text-gray-400 mt-5">
           {signUp}
