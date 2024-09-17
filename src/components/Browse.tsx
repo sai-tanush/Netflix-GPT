@@ -1,20 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Browse: React.FC = () => {
   const cartUser = useSelector((state: RootState) => state.user);
 
   console.log("Browse Page Rendering ....");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function handleSignOut() {
-    dispatch(removeUser());
-    navigate("/login");
-    console.log("Usercart inside Browse page = ", cartUser);
+    signOut(auth).then(() => {
+      navigate("/login");
+    }).catch((error) => {
+      console.log("error=",error);
+    });
   }
 
   return (
