@@ -2,8 +2,9 @@ import { useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { checkValidEmail } from "../utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
 import { auth } from "../utils/firebase";
@@ -20,13 +21,11 @@ const Login: React.FC = () => {
     password: "",
   });
   const name = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const signUp = isSignUp ? "Already an user!" : "New to Netflix?";
   const signBtn = isSignUp ? "Sign Up" : "Sign In";
   const signUpLink = isSignUp ? "Sign in now" : "Sign up now";
-
-  
 
   function handleLoginPage() {
     setIsSignUp((prevVal) => !prevVal);
@@ -46,8 +45,19 @@ const Login: React.FC = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
+            updateProfile(user, {
+              displayName: name.current.value,
+            })
+              .then(() => {
+                // Profile updated!
+                navigate("/browse");
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setIsErrorMessage(errorCode + "-" + errorMessage);
+              });
             console.log("user signed in = ", user);
-            navigate("/browse");
           })
           .catch((error) => {
             //Error Occurs
