@@ -31,7 +31,7 @@ const Browse: React.FC = () => {
         </button>
       </div>
       <div className="absolute top-2 right-2">
-        <p>User-{cartUser.email}</p>
+        <p>User-<span className="text-black font-bold">{cartUser.displayName}</span></p>
       </div>
     </>
   );
