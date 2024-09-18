@@ -1,3 +1,16 @@
 const LOGO = "https://assets.nflxext.com/ffe/siteui/vlv3/04bef84d-51f6-401e-9b8e-4a521cbce3c5/null/IN-en-20240903-TRIFECTA-perspective_0d3aac9c-578f-4e3c-8aa8-bbf4a392269b_small.jpg";
-
 export default LOGO;
+
+export const API_OPTIONS = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWM3NTUxYWU0ODNiNDI3MDRjYThhZmUyMTdjZWNjYiIsIm5iZiI6MTcyNjY1OTcxNy4zODQ1OTIsInN1YiI6IjY2ZWFiYjY1ODJmZjg3M2Y3ZDFmM2ZjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s9E9UbZfLynXKuR0fAzcV_TeJR5bimPLKZfPvK-bjR8',
+    }
+}
+
+
+// curl --request GET \
+//      --url 'https://api.themoviedb.org/3/movie/changes?page=1' \
+//      --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWM3NTUxYWU0ODNiNDI3MDRjYThhZmUyMTdjZWNjYiIsIm5iZiI6MTcyNjY1OTcxNy4zODQ1OTIsInN1YiI6IjY2ZWFiYjY1ODJmZjg3M2Y3ZDFmM2ZjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s9E9UbZfLynXKuR0fAzcV_TeJR5bimPLKZfPvK-bjR8' \
+//      --header 'accept: application/json'
