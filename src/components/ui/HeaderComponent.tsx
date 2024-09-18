@@ -14,14 +14,10 @@ const HeaderComponent: React.FC = () => {
       if (user) {
         //user signed in
         const { uid, email, displayName } = user;
-        console.log(
-          `user signed in : uid = ${uid}, email= ${email}, displayName= ${displayName}`
-        );
         dispatch(addUser({ uid, email, displayName }));
-        console.log("user signed in");
+        navigate("/browse");
       } else {
         //User signed out
-        console.log("user signed out ");
         dispatch(removeUser());
         navigate("/login");
       }
