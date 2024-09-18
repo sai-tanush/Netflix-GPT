@@ -1,6 +1,34 @@
+import { useDispatch } from "react-redux";
 import HeaderLogo from "./HeaderLogo";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../utils/firebase";
+import { addUser, removeUser } from "../../utils/userSlice";
 
 const HeaderComponent: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //user signed in
+        const { uid, email, displayName } = user;
+        console.log(
+          `user signed in : uid = ${uid}, email= ${email}, displayName= ${displayName}`
+        );
+        dispatch(addUser({ uid, email, displayName }));
+        console.log("user signed in");
+      } else {
+        //User signed out
+        console.log("user signed out ");
+        dispatch(removeUser());
+        navigate("/login");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div>
       <img
