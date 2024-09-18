@@ -1,32 +1,41 @@
 import { useRef, useState } from "react";
-import { checkValidEmail } from "./utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { checkValidEmail } from "../utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
-import { Link } from "react-router-dom";
-import { auth } from "./utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+
+type Details = {
+  email: string;
+  password: string;
+};
 
 const Login: React.FC = () => {
+  
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
-
+  const [details, setDetails] = useState<Details>({
+    email: "",
+    password: "",
+  });
   const name = useRef<HTMLInputElement>(null);
-  const email = useRef<HTMLInputElement>(null);
-  const password = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const signUp = isSignUp ? "Already an user!" : "New to Netflix?";
   const signBtn = isSignUp ? "Sign Up" : "Sign In";
   const signUpLink = isSignUp ? "Sign in now" : "Sign up now";
-  console.log("page = ", signBtn);
+
   function handleLoginPage() {
-    setIsSignUp(prevVal => !prevVal);
+    setIsSignUp((prevVal) => !prevVal);
   }
 
-  function handleButtonClick() {
-    if (email.current && password.current) {
-      console.log("email = ", email.current.value);
-      console.log("password = ", password.current.value);
-      const message = checkValidEmail(email.current.value);
-      console.log("mesasge = ", message);
+  function handleValidate() {
+    if (details.email && details.password) {
+      const message = checkValidEmail(details.email);
       setIsErrorMessage(message);
 
       if (message) return;
@@ -34,14 +43,22 @@ const Login: React.FC = () => {
       if (isSignUp) {
         //Signup Logic
         console.log("Entered If case");
-        createUserWithEmailAndPassword(
-          auth,
-          email.current.value,
-          password.current.value
-        )
+        createUserWithEmailAndPassword(auth, details.email, details.password)
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
+            updateProfile(user, {
+              displayName: name.current.value,
+            })
+              .then(() => {
+                // Profile updated!
+                navigate("/browse");
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setIsErrorMessage(errorCode + "-" + errorMessage);
+              });
             console.log("user signed in = ", user);
           })
           .catch((error) => {
@@ -52,12 +69,13 @@ const Login: React.FC = () => {
           });
       } else {
         //Sign in Logic
-        console.log("Entered else case");
-        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        console.log("Entered Sign-In case");
+        signInWithEmailAndPassword(auth, details.email, details.password)
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
             console.log("User LoggedIn = ", user);
+            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -68,8 +86,17 @@ const Login: React.FC = () => {
     }
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setDetails({
+      ...details,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("Submitted useState user details = ", details);
   };
 
   return (
@@ -86,23 +113,30 @@ const Login: React.FC = () => {
             type="text"
             placeholder="Enter Name"
             className="p-3 my-2 w-full border-2 border-gray-400 bg-transparent rounded-md"
+            required
           />
         )}
         <input
-          ref={email}
+          value={details.email}
+          onChange={handleChange}
           type="email"
+          name="email"
           placeholder="Enter Email"
           className="p-3 my-2 w-full border-2 border-gray-400 bg-transparent rounded-md"
+          required
         />
         <input
-          ref={password}
+          value={details.password}
+          onChange={handleChange}
           type="password"
+          name="password"
           placeholder="******"
           className="p-3 my-2 w-full bg-transparent border-2 border-gray-400 rounded-md"
+          required
         />
         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
         <button
-          onClick={handleButtonClick}
+          onClick={handleValidate}
           className="w-full p-2 my-4 bg-red-700 rounded-lg"
         >
           {signBtn}
@@ -131,5 +165,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-//01:51:41
