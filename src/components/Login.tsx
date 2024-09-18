@@ -9,11 +9,13 @@ import { checkValidEmail } from "../utils/validate";
 import HeaderComponent from "./ui/HeaderComponent";
 import { auth } from "../utils/firebase";
 
+type Details = {
+  email: string;
+  password: string;
+};
+
 const Login: React.FC = () => {
-  type Details = {
-    email: string;
-    password: string;
-  };
+  
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
   const [details, setDetails] = useState<Details>({
