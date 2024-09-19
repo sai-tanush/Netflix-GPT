@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 const BrowseNavbar = () => {
   return (
-    <div className="w-screen h-">
+    <div className="w-screen z-30">
       <div className="flex justify-between">
         <div className="flex">
           <div>
@@ -15,7 +15,7 @@ const BrowseNavbar = () => {
               className="ml-10"
             />
           </div>
-          <ul className="flex space-x-3 mt-6 ml-6">
+          <ul className="flex space-x-3 mt-6 ml-6 cursor-pointer">
             <li>
               <p>Home</p>
             </li>
@@ -37,7 +37,7 @@ const BrowseNavbar = () => {
           </ul>
         </div>
         <div className="mt-6 mr-6">
-          <ul className="flex space-x-3">
+          <ul className="flex space-x-3 cursor-pointer">
             <li>
               <Search />
             </li>
