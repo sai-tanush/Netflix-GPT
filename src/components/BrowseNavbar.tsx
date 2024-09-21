@@ -36,8 +36,8 @@ const BrowseNavbar = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-6 mr-6">
-          <ul className="flex space-x-3 cursor-pointer">
+        <div className="mt-6 mr-10">
+          <ul className="flex space-x-4 cursor-pointer">
             <li>
               <Search />
             </li>
@@ -47,11 +47,11 @@ const BrowseNavbar = () => {
             <li>
               <Bell />
             </li>
-            <li className="mt-[-3px]">
+            <li className="">
               <img
                 src="https://occ-0-2857-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABStlS0MPUGcy6Ovyeia-3ddnnXNb2Lri4P4H4QCFuR_yaGs0umyqHUDOZcOBKF8MFUGHX07txAW70z7wq_S9AKGQ_MixrLQ.png?r=a4b"
-                height={33}
-                width={33}
+                height={28}
+                width={28}
               />
             </li>
           </ul>
