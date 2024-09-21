@@ -1,7 +1,43 @@
-import { Bell, Search } from "lucide-react";
+import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
+import { useEffect, useRef, useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const BrowseNavbar = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Close the dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  function handleSignOut() {
+    signOut(auth).then(() => {
+      navigate("/login");
+    }).catch((error) => {
+      console.log("error=",error);
+    });
+  }
   return (
     <div className="w-screen z-30">
       <div className="flex justify-between">
@@ -47,13 +83,67 @@ const BrowseNavbar = () => {
             <li>
               <Bell />
             </li>
-            <li className="">
+            <li className="flex">
               <img
                 src="https://occ-0-2857-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABStlS0MPUGcy6Ovyeia-3ddnnXNb2Lri4P4H4QCFuR_yaGs0umyqHUDOZcOBKF8MFUGHX07txAW70z7wq_S9AKGQ_MixrLQ.png?r=a4b"
                 height={28}
                 width={28}
               />
+            <button
+              onClick={toggleDropdown}
+              className=" text-black rounded-md flex items-center focus:outline-none"
+            >
+              <ChevronDown className="w-5 h-5" />
+            </button>
             </li>
+            {isOpen && (
+              <div className="absolute right-10 top-14 mt-2 w-40 bg-black border border-gray-200 shadow-lg z-10">
+                <ul className="py-1 text-sm">
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                      Manage Profiles
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                      Transfer Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                      Account
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                      Help Centre
+                    </a>
+                  </li>
+                  <hr/>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={handleSignOut}
+                      className="block px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                      Sign out of Netflix
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </ul>
         </div>
       </div>
