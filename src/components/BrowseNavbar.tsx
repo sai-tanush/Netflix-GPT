@@ -1,9 +1,9 @@
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
-import { useEffect, useRef, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 
 const BrowseNavbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
