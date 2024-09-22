@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addTrailerVideo } from "../utils/moviesSlice";
 
 interface VideoDetails {
   id: string;
@@ -15,6 +17,8 @@ interface VideoDetails {
 }
 
 const VideoBackground = ({ movieId }: { movieId: number }) => {
+  
+  const dispatch = useDispatch();
   //fetch trailer video
   const getMovieVideo = async () => {
     const data = await fetch(
@@ -28,6 +32,7 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
     );
     const trailer = filterData.length ? filterData[0] : jsonData.results[0];
     console.log("trailer = ", trailer);
+    dispatch(addTrailerVideo(trailer));
   };
 
   useEffect(() => {
@@ -48,6 +53,6 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
       ></iframe>
     </div>
   );
-};
+}; 
 
 export default VideoBackground;
