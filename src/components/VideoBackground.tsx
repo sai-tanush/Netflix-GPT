@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import { RootState } from "../utils/appStore";
 
 interface VideoDetails {
   id: string;
@@ -19,6 +20,7 @@ interface VideoDetails {
 const VideoBackground = ({ movieId }: { movieId: number }) => {
   
   const dispatch = useDispatch();
+  const trailerVideo = useSelector((store:RootState)=> store.movies?.trailerVideo)
   //fetch trailer video
   const getMovieVideo = async () => {
     const data = await fetch(
@@ -44,7 +46,7 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/4CLE3pWAAr8?si=cOU1pPifxkT7z4CD"
+        src={`https://www.youtube.com/embed/${trailerVideo?.key}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
