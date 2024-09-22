@@ -17,21 +17,35 @@ interface VideoDetails {
 const VideoBackground = ({ movieId }: { movieId: number }) => {
   //fetch trailer video
   const getMovieVideo = async () => {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos`, API_OPTIONS);
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos`,
+      API_OPTIONS
+    );
     const jsonData = await data.json();
     console.log("Movie Details = ", jsonData);
-    const filterData = jsonData.results.filter((video: VideoDetails) => video.type === "Trailer");
-    const trailer  = filterData.length? filterData[0] : jsonData.results[0];
+    const filterData = jsonData.results.filter(
+      (video: VideoDetails) => video.type === "Trailer"
+    );
+    const trailer = filterData.length ? filterData[0] : jsonData.results[0];
     console.log("trailer = ", trailer);
-  }
+  };
 
-  useEffect(()=> {
+  useEffect(() => {
     getMovieVideo();
-  }, [])
+  }, []);
 
   return (
     <div>
-      <h1>Video Background</h1>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/4CLE3pWAAr8?si=cOU1pPifxkT7z4CD"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };
