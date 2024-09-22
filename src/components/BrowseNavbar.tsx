@@ -40,7 +40,7 @@ const BrowseNavbar = () => {
   }
   return (
     <div className="w-screen z-30">
-      <div className="flex justify-between">
+      <div className="flex justify-between text-white">
         <div className="flex">
           <div>
             <img
@@ -93,7 +93,7 @@ const BrowseNavbar = () => {
               onClick={toggleDropdown}
               className=" text-black rounded-md flex items-center focus:outline-none"
             >
-              <ChevronDown className="w-5 h-5" />
+              <ChevronDown stroke="white" className="w-5 h-5" />
             </button>
             </li>
             {isOpen && (
