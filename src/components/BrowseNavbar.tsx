@@ -40,7 +40,7 @@ const BrowseNavbar = () => {
   }
   return (
     <div className="w-screen z-30">
-      <div className="flex justify-between text-white">
+      <div className="flex justify-between">
         <div className="flex">
           <div>
             <img
