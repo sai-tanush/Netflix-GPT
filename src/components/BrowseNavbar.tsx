@@ -93,7 +93,7 @@ const BrowseNavbar = () => {
               onClick={toggleDropdown}
               className=" text-black rounded-md flex items-center focus:outline-none"
             >
-              <ChevronDown stroke="white" className="w-5 h-5" />
+              <ChevronDown stroke="black" className="w-5 h-5" />
             </button>
             </li>
             {isOpen && (
