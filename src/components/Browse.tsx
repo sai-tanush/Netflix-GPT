@@ -6,7 +6,7 @@ const Browse: React.FC = () => {
 
   return (
     <>
-      <div className="relative w-screen h-screen">
+      <div className="relative w-screen min-h-screen bg-gray-950">
         <BrowseNavbar />
       </div>
     </>
