@@ -6,9 +6,12 @@ import { RootState } from "../utils/appStore";
 const MainContainer:React.FC = () => {
     const movies = useSelector((store:RootState) => store.movies?.nowPlayingMovies);
     if(!movies) return;
+
+    const mainMovie = movies[0];
+    const { original_title, overview } = mainMovie;
   return (
     <div className="absolute top-0 left-0 flex flex-col">
-        <VideoTitle />
+        <VideoTitle title={original_title} overview={overview}/>
         <VideoBackground />
     </div>
   )
