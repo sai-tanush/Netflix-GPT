@@ -8,7 +8,7 @@ const VideoTitle = ({
   overview: string;
 }) => {
   return (
-    <div className=" flex flex-col pt-40 px-16 w-2/5 z-0">
+    <div className=" flex flex-col pt-40 px-16 w-2/5 z-10">
       <h1 className="text-6xl font-bold mb-1">{title}</h1>
       <p className="text-md">{overview}</p>
       <div className="flex items-center justify-start space-x-4 cursor-pointer mt-4">
