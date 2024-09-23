@@ -13,7 +13,7 @@ const VideoTitle = ({
       <p className="text-6xl font-bold mb-3 overflow-hidden">{title}</p>
       <p className="text-md">{overview}</p>
       <div className="flex items-center justify-start space-x-4 cursor-pointer mt-4">
-        <div className="flex justify-center gap-2 w-[8rem] bg-white rounded-md py-2.5 px-4 hover:bg-slate-200">
+        <div className="flex justify-center gap-2 w-[8rem] bg-white rounded-md py-2.5 px-4 hover:bg-opacity-70">
           <Play fill="black" />
           <button className="text-black"> Play</button>
         </div>
