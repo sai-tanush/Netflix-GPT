@@ -42,7 +42,6 @@ const Login: React.FC = () => {
 
       if (isSignUp) {
         //Signup Logic
-        console.log("Entered If case");
         createUserWithEmailAndPassword(auth, details.email, details.password)
           .then((userCredential) => {
             // Signed up
@@ -59,7 +58,6 @@ const Login: React.FC = () => {
                 const errorMessage = error.message;
                 setIsErrorMessage(errorCode + "-" + errorMessage);
               });
-            console.log("user signed in = ", user);
           })
           .catch((error) => {
             //Error Occurs
@@ -69,7 +67,7 @@ const Login: React.FC = () => {
           });
       } else {
         //Sign in Logic
-        console.log("Entered Sign-In case");
+
         signInWithEmailAndPassword(auth, details.email, details.password)
           .then((userCredential) => {
             // Signed in
