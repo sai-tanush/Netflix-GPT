@@ -39,7 +39,7 @@ const BrowseNavbar = () => {
     });
   }
   return (
-    <div className="w-screen z-30">
+    <div className="absolute w-screen z-30 text-white bg-gradient-to-b from-black">
       <div className="flex justify-between">
         <div className="flex">
           <div>
