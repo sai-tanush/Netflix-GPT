@@ -9,7 +9,7 @@ const VideoTitle = ({
 }) => {
   return (
     <div className=" flex flex-col pt-40 px-16 w-2/5 z-10">
-      <h1 className="text-6xl font-bold mb-1">{title}</h1>
+      <p className="text-6xl font-bold mb-3 overflow-hidden">{title}</p>
       <p className="text-md">{overview}</p>
       <div className="flex items-center justify-start space-x-4 cursor-pointer mt-4">
         <div className="flex justify-center gap-2 w-[8rem] border border-black rounded-md py-2.5 px-4">
