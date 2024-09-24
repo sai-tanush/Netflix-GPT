@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
+import { PROFILE_URL } from "../utils/constants";
 
 const navItems = ["HomeTV", "Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
 const profileItems = ["Manage Profiles","Transfer Profile","Account","Help Centre"];
@@ -75,7 +76,7 @@ const BrowseNavbar = () => {
             </li>
             <li className="flex">
               <img
-                src="https://occ-0-2857-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABStlS0MPUGcy6Ovyeia-3ddnnXNb2Lri4P4H4QCFuR_yaGs0umyqHUDOZcOBKF8MFUGHX07txAW70z7wq_S9AKGQ_MixrLQ.png?r=a4b"
+                src={PROFILE_URL}
                 height={28}
                 width={28}
               />
