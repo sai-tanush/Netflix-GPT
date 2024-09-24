@@ -2,12 +2,13 @@ import { useSelector } from "react-redux"
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 import { RootState } from "../utils/appStore";
+import { RANDOM_NUM } from "../utils/constants";
 
 const MainContainer:React.FC = () => {
     const movies = useSelector((store:RootState) => store.movies?.nowPlayingMovies);
     if(!movies) return;
 
-    const mainMovie = movies[0];
+    const mainMovie = movies[RANDOM_NUM];
     const { original_title, overview, id } = mainMovie;
   return (
     <div className="flex flex-col">
