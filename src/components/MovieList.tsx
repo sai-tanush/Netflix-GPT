@@ -12,7 +12,7 @@ const MovieList: React.FC<MovieListProps> = ({ title, movies }) => {
   console.log("movie Title = ", title);
   return (
     <div className="p-6">
-      <p className="text-lg text-white mb-1">{title}</p>
+      <p className="text-xl text-white mb-1">{title}</p>
       <div className="flex overflow-x-scroll">
         <div className="flex gap-0">
           {movies.map((movie) => (
