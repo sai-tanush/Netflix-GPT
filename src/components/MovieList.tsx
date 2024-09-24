@@ -4,7 +4,7 @@ import { Movie } from '../utils/moviesSlice';
 
 interface MovieListProps {
     title: string
-    movies: Movie[] | null
+    movies: Movie[]
 }
 
 const MovieList:React.FC<MovieListProps>= ({title, movies}) => {
