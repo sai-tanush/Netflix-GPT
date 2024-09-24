@@ -53,6 +53,7 @@ interface MoviesState {
   upcommingMovies: Movie[] | null;
   airingTodayTVshows: TVShow[] | null;
   onTheAirTVshows: TVShow[] | null;
+  popularTVshows: TVShow[] | null;
   trailerVideo: MovieTrailer | null;
 }
 
@@ -63,6 +64,7 @@ const initialState: MoviesState = {
   upcommingMovies: null,
   airingTodayTVshows: null,
   onTheAirTVshows: null,
+  popularTVshows: null,
   trailerVideo: null,
 };
 
@@ -88,6 +90,9 @@ const moviesSlice = createSlice({
     addOnTheAirTVshows: (state, action) => {
       state.onTheAirTVshows = action.payload;
     },
+    addPopularTVshows: (state, action) => {
+      state.popularTVshows = action.payload;
+    },
     addTrailerVideo: (state, action) => {
       state.trailerVideo = action.payload;
     },
@@ -101,5 +106,6 @@ export const {
   addUpcommingMovies,
   addAiringTodayTVshows,
   addOnTheAirTVshows,
+  addPopularTVshows,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;
