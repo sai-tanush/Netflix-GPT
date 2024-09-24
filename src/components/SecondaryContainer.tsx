@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 const SecondaryContainer:React.FC = () => {
     const movies = useSelector((store:RootState) => store.movies)
   return (
-    <div>
+    <div className='bg-black'>
         <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
     </div>
   )
