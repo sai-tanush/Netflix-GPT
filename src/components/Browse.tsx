@@ -6,11 +6,15 @@ import SecondaryContainer from "./SecondaryContainer";
 import { usePopularMovies } from "../hooks/usePopularMovies";
 import { useTopRatedMovies } from "../hooks/useTopRatedMovies";
 import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
+import { useAiringTodayTVshows } from "../hooks/useAiringTodayTVshows";
+import { useOnTheAirTVshows } from "../hooks/useOnTheAirTVshows";
 const Browse: React.FC = () => {
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
+  useAiringTodayTVshows();
+  useOnTheAirTVshows();
 
   return (
     <>
