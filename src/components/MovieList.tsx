@@ -1,22 +1,27 @@
-import React from 'react'
-import MovieCard from './MovieCard';
-import { Movie } from '../utils/moviesSlice';
+import React from "react";
+import MovieCard from "./MovieCard";
+import { Movie } from "../utils/moviesSlice";
 
 interface MovieListProps {
-    title: string
-    movies: Movie[]
+  title: string;
+  movies: Movie[];
 }
 
-const MovieList:React.FC<MovieListProps>= ({title, movies}) => {
+const MovieList: React.FC<MovieListProps> = ({ title, movies }) => {
   console.log("movies = ", movies);
   console.log("movie Title = ", title);
   return (
-    <div>
-        {movies.map((movies) => (
-          <MovieCard key={movies.id} posterPath={movies.poster_path} />
-        ))}
+    <div className="p-6">
+      <p className="text-lg text-white mb-1">{title}</p>
+      <div className="flex overflow-x-scroll">
+        <div className="flex gap-0">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+          ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default MovieList
+export default MovieList;
