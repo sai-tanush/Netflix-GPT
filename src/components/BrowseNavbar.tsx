@@ -6,17 +6,25 @@ import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 import { PROFILE_URL } from "../utils/constants";
 
-const navItems = ["HomeTV", "Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
-const profileItems = ["Manage Profiles","Transfer Profile","Account","Help Centre"];
+const navItems = [
+  "HomeTV",
+  "Shows",
+  "Movies",
+  "New & Popular",
+  "My List",
+  "Browse by Languages",
+];
+const profileItems = [
+  "Manage Profiles",
+  "Transfer Profile",
+  "Account",
+  "Help Centre",
+];
 
 const BrowseNavbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
 
   // Close the dropdown when clicking outside
   useEffect(() => {
@@ -35,6 +43,10 @@ const BrowseNavbar = () => {
     };
   }, []);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   function handleSignOut() {
     signOut(auth)
       .then(() => {
@@ -44,6 +56,7 @@ const BrowseNavbar = () => {
         console.log("error=", error);
       });
   }
+
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
       <div className="flex justify-between">
@@ -75,11 +88,7 @@ const BrowseNavbar = () => {
               <Bell />
             </li>
             <li className="flex">
-              <img
-                src={PROFILE_URL}
-                height={28}
-                width={28}
-              />
+              <img src={PROFILE_URL} height={28} width={28} />
               <button
                 onClick={toggleDropdown}
                 className=" text-black rounded-md flex items-center focus:outline-none"
@@ -92,13 +101,13 @@ const BrowseNavbar = () => {
                 <ul className="py-1 text-sm">
                   {profileItems.map((item) => (
                     <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-white hover:bg-gray-800"
-                    >
-                      {item} 
-                    </a>
-                  </li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-white hover:bg-gray-800"
+                      >
+                        {item}
+                      </a>
+                    </li>
                   ))}
                   <hr />
                   <li>
