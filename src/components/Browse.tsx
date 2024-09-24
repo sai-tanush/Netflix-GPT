@@ -8,6 +8,7 @@ import { useTopRatedMovies } from "../hooks/useTopRatedMovies";
 import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
 import { useAiringTodayTVshows } from "../hooks/useAiringTodayTVshows";
 import { useOnTheAirTVshows } from "../hooks/useOnTheAirTVshows";
+import { usePopularTVshows } from "../hooks/usePopularTVshows";
 const Browse: React.FC = () => {
   useNowPlayingMovies();
   usePopularMovies();
@@ -15,6 +16,7 @@ const Browse: React.FC = () => {
   useUpcomingMovies();
   useAiringTodayTVshows();
   useOnTheAirTVshows();
+  usePopularTVshows();
 
   return (
     <>
