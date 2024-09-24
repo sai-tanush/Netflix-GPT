@@ -39,7 +39,7 @@ const BrowseNavbar = () => {
     });
   }
   return (
-    <div className="absolute w-screen z-30 text-white bg-gradient-to-b from-black">
+    <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
       <div className="flex justify-between">
         <div className="flex">
           <div>
@@ -93,7 +93,7 @@ const BrowseNavbar = () => {
               onClick={toggleDropdown}
               className=" text-black rounded-md flex items-center focus:outline-none"
             >
-              <ChevronDown stroke="black" className="w-5 h-5" />
+              <ChevronDown stroke="white" className="w-5 h-5" />
             </button>
             </li>
             {isOpen && (
