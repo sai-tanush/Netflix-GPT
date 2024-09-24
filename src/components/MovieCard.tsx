@@ -1,6 +1,6 @@
 import { IMG_CDN_URL } from "../utils/constants";
 
-interface PosterPathProps {
+type PosterPathProps = {
   posterPath: string;
 }
 
