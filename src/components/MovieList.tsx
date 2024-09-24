@@ -11,10 +11,10 @@ const MovieList: React.FC<MovieListProps> = ({ title, movies }) => {
   console.log("movies = ", movies);
   console.log("movie Title = ", title);
   return (
-    <div className="p-6">
-      <p className="text-xl text-white mb-1">{title}</p>
+    <div className="p-6 -mb-9">
+      <p className="text-xl text-white mb-2">{title}</p>
       <div className="flex overflow-x-scroll">
-        <div className="flex gap-0">
+        <div className="flex">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} posterPath={movie.poster_path} />
           ))}
