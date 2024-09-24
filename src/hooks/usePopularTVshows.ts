@@ -8,7 +8,7 @@ export const usePopularTVshows = () => {
 
   const getPopularTVshows = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/tv/popular?page=1",
+      "https://api.themoviedb.org/3/tv/popular?page=2",
       API_OPTIONS
     );
     const jsonData = await data.json();

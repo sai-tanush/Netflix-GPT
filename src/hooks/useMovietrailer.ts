@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addTrailerVideo } from "../utils/moviesSlice";
 
-interface VideoDetails {
+type VideoDetails = {
   id: string;
   iso_639_1: string;
   iso_3166_1: string;
@@ -13,7 +13,7 @@ interface VideoDetails {
   published_at: string;
   site: string;
   size: number;
-  type: string;
+  type: "Trailer";
 }
 
 const useMovieTrailer = ({ movieId }: { movieId: number }) => {

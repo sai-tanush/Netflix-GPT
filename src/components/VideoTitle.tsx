@@ -1,11 +1,12 @@
 import { Info, Play } from "lucide-react";
-
-const VideoTitle = ({
-  title,
-  overview,
-}: {
+type VideoTitleProps = {
   title: string;
   overview: string;
+}
+
+const VideoTitle:React.FC<VideoTitleProps> = ({
+  title,
+  overview
 }) => {
   return (
     <div className="absolute flex flex-col pt-[20%] px-16 w-screen aspect-video text-white bg-gradient-to-r from-black z-10">

@@ -1,21 +1,21 @@
 import React from "react";
 import MovieCard from "./MovieCard";
-import { Movie } from "../utils/moviesSlice";
+import { IMovieDetails, ITVShowDetails } from "../utils/moviesSlice";
 
 interface MovieListProps {
   title: string;
-  movies: Movie[];
+  movies?: IMovieDetails[] | null;
+  tvshows?: ITVShowDetails[] | null;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ title, movies }) => {
-  console.log("movies = ", movies);
-  console.log("movie Title = ", title);
+const MovieList: React.FC<MovieListProps> = ({ title, movies, tvshows }) => {
+  const posterType = movies? movies : tvshows;
   return (
     <div className="p-6 -mb-9">
       <p className="text-xl text-white ml-9 mb-2">{title}</p>
       <div className="flex overflow-x-scroll no-scrollbar">
         <div className="flex">
-          {movies?.map((movie) => (
+          {posterType?.map((movie) => (
             <MovieCard key={movie.id} posterPath={movie.poster_path} />
           ))}
         </div>

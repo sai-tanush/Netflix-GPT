@@ -1,36 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface Movie {
+interface IPosterDetails {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
   id: number;
   original_language: string;
-  original_title: string;
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
   vote_average: number;
   vote_count: number;
 }
-export interface TVShow {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
+interface IMovieDetails extends IPosterDetails {
+  original_title: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+}
+interface ITVShowDetails extends IPosterDetails  {
   origin_country: string[];
-  original_language: string;
   original_name: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
   first_air_date: string;
   name: string;
-  vote_average: number;
-  vote_count: number;
 }
 
 interface MovieTrailer {
@@ -47,13 +39,13 @@ interface MovieTrailer {
 }
 
 interface MoviesState {
-  nowPlayingMovies: Movie[] | null;
-  popularMovies: Movie[] | null;
-  topRatedMovies: Movie[] | null;
-  upcommingMovies: Movie[] | null;
-  airingTodayTVshows: TVShow[] | null;
-  popularTVshows: TVShow[] | null;
-  topRatedTVshows: TVShow[] | null;
+  nowPlayingMovies: IMovieDetails[] | null;
+  popularMovies: IMovieDetails[] | null;
+  topRatedMovies: IMovieDetails[] | null;
+  upcommingMovies: IMovieDetails[] | null;
+  airingTodayTVshows: ITVShowDetails[] | null;
+  popularTVshows: ITVShowDetails[] | null;
+  topRatedTVshows: ITVShowDetails[] | null;
   trailerVideo: MovieTrailer | null;
 }
 
@@ -108,4 +100,5 @@ export const {
   addPopularTVshows,
   addTopRatedTVshows,
 } = moviesSlice.actions;
+export type { IMovieDetails, ITVShowDetails};
 export default moviesSlice.reducer;

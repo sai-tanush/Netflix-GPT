@@ -18,15 +18,15 @@ const SecondaryContainer: React.FC = () => {
           />
           <MovieList
             title={"Airing Today TV Shows"}
-            movies={movies.airingTodayTVshows}
+            tvshows={movies.airingTodayTVshows}
           />
           <MovieList
             title={"Popular TV Shows"}
-            movies={movies.popularTVshows}
+            tvshows={movies.popularTVshows}
           />
           <MovieList
             title={"Top Rated TV Shows"}
-            movies={movies.topRatedTVshows}
+            tvshows={movies.topRatedTVshows}
           />
         </div>
       </div>

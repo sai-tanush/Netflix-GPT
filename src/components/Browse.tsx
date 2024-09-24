@@ -21,7 +21,7 @@ const Browse: React.FC = () => {
 
   return (
     <>
-      <div className="relative w-screen min-h-screen">
+      <div className="relative w-screen min-h-screen no-scrollable">
         <BrowseNavbar />
         <MainContainer />
         <SecondaryContainer />
