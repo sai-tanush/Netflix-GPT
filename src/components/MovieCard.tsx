@@ -1,12 +1,14 @@
 import { IMG_CDN_URL } from '../utils/constants'
-import { Movie } from '../utils/moviesSlice'
+
+interface PosterPathProps {
+  posterPath: string
+}
 
 
-
-const MovieCard = ({ movie }: {movie: Movie}) => {
+const MovieCard:React.FC<PosterPathProps>= ({ posterPath }) => {
   return (
     <div>
-      <img alt="Move Poster" src={IMG_CDN_URL + movie.poster_path} />
+      <img alt="Move Poster" src={IMG_CDN_URL + posterPath} />
     </div>
   )
 }
