@@ -7,7 +7,7 @@ const SecondaryContainer:React.FC = () => {
     const movies = useSelector((store:RootState) => store.movies)
   return (
       movies.nowPlayingMovies && ( 
-    <div className='bg-black'>
+    <div className='bg-black -mt-72 relative z-50'>
         <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
         <MovieList title={"Upcomming"} movies={movies.nowPlayingMovies} />
         <MovieList title={"Trending"} movies={movies.nowPlayingMovies} />
