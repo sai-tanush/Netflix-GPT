@@ -16,6 +16,22 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
 }
+export interface TVShow {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  first_air_date: string;
+  name: string;
+  vote_average: number;
+  vote_count: number;
+}
 
 interface MovieTrailer {
   id: string;
@@ -35,6 +51,8 @@ interface MoviesState {
   popularMovies: Movie[] | null;
   topRatedMovies: Movie[] | null;
   upcommingMovies: Movie[] | null;
+  airingTodayTVshows: TVShow[] | null;
+  onTheAirTVshows: TVShow[] | null;
   trailerVideo: MovieTrailer | null;
 }
 
@@ -43,6 +61,8 @@ const initialState: MoviesState = {
   popularMovies: null,
   topRatedMovies: null,
   upcommingMovies: null,
+  airingTodayTVshows: null,
+  onTheAirTVshows: null,
   trailerVideo: null,
 };
 
@@ -62,6 +82,12 @@ const moviesSlice = createSlice({
     addUpcommingMovies: (state, action) => {
       state.upcommingMovies = action.payload;
     },
+    addAiringTodayTVshows: (state, action) => {
+      state.airingTodayTVshows = action.payload;
+    },
+    addOnTheAirTVshows: (state, action) => {
+      state.onTheAirTVshows = action.payload;
+    },
     addTrailerVideo: (state, action) => {
       state.trailerVideo = action.payload;
     },
@@ -73,5 +99,7 @@ export const {
   addPopularMovies,
   addTopRatedMovies,
   addUpcommingMovies,
+  addAiringTodayTVshows,
+  addOnTheAirTVshows,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;
