@@ -9,8 +9,4 @@ export const API_OPTIONS = {
     }
 }
 
-
-// curl --request GET \
-//      --url 'https://api.themoviedb.org/3/movie/changes?page=1' \
-//      --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWM3NTUxYWU0ODNiNDI3MDRjYThhZmUyMTdjZWNjYiIsIm5iZiI6MTcyNjY1OTcxNy4zODQ1OTIsInN1YiI6IjY2ZWFiYjY1ODJmZjg3M2Y3ZDFmM2ZjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s9E9UbZfLynXKuR0fAzcV_TeJR5bimPLKZfPvK-bjR8' \
-//      --header 'accept: application/json'
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w780";
