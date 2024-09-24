@@ -8,10 +8,13 @@ interface MovieListProps {
 }
 
 const MovieList:React.FC<MovieListProps>= ({title, movies}) => {
+  console.log("movies = ", movies);
   console.log("movie Title = ", title);
   return (
     <div>
-        <MovieCard movie={movies[0]} />
+        {movies.map((movies) => (
+          <MovieCard key={movies.id} posterPath={movies.poster_path} />
+        ))}
     </div>
   )
 }
