@@ -11,8 +11,8 @@ const SecondaryContainer: React.FC = () => {
         <div className="relative -mt-72 z-50">
         <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
           <MovieList title={"Upcomming"} movies={movies.nowPlayingMovies} />
-          <MovieList title={"Trending"} movies={movies.nowPlayingMovies} />
-          <MovieList title={"Action"} movies={movies.nowPlayingMovies} />
+          <MovieList title={"Popular"} movies={movies.popularMovies} />
+          <MovieList title={"Top Rated Movies"} movies={movies.topRatedMovies} />
           <MovieList title={"Drama"} movies={movies.nowPlayingMovies} />
         </div>
       </div>
