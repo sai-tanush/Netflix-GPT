@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 
 const navItems = ["HomeTV", "Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
+const profileItems = ["Manage Profiles","Transfer Profile","Account","Help Centre"];
 
 const BrowseNavbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -88,38 +89,16 @@ const BrowseNavbar = () => {
             {isOpen && (
               <div className="absolute right-10 top-14 mt-2 w-40 bg-black border border-gray-200 shadow-lg z-10">
                 <ul className="py-1 text-sm">
-                  <li>
+                  {profileItems.map((item) => (
+                    <li>
                     <a
                       href="#"
                       className="block px-4 py-2 text-white hover:bg-gray-800"
                     >
-                      Manage Profiles
+                      {item} 
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-white hover:bg-gray-800"
-                    >
-                      Transfer Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-white hover:bg-gray-800"
-                    >
-                      Account
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-white hover:bg-gray-800"
-                    >
-                      Help Centre
-                    </a>
-                  </li>
+                  ))}
                   <hr />
                   <li>
                     <a
