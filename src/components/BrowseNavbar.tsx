@@ -5,6 +5,8 @@ import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 
+const navItems = ["HomeTV", "Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
+
 const BrowseNavbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -54,24 +56,9 @@ const BrowseNavbar = () => {
             />
           </div>
           <ul className="flex space-x-3 mt-6 ml-6 cursor-pointer">
-            <li>
-              <p>Home</p>
-            </li>
-            <li>
-              <p>TV Shows</p>
-            </li>
-            <li>
-              <p>Movies</p>
-            </li>
-            <li>
-              <p>New & Popular</p>
-            </li>
-            <li>
-              <p>My List</p>
-            </li>
-            <li>
-              <p>Browse by Languages</p>
-            </li>
+            {navItems.map((item) => (
+              <li>{item}</li>
+            ))}
           </ul>
         </div>
         <div className="mt-6 mr-10">
