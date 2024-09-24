@@ -7,7 +7,7 @@ interface PosterPathProps {
 
 const MovieCard:React.FC<PosterPathProps>= ({ posterPath }) => {
   return (
-    <div>
+    <div className='w-48'>
       <img alt="Move Poster" src={IMG_CDN_URL + posterPath} />
     </div>
   )
