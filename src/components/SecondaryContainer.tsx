@@ -14,7 +14,6 @@ const SecondaryContainer: React.FC = () => {
           <MovieList title={"Popular"} movies={movies.popularMovies} />
           <MovieList title={"Top Rated Movies"} movies={movies.topRatedMovies} />
           <MovieList title={"Airing Today TV Shows"} movies={movies.airingTodayTVshows} />
-          <MovieList title={"On the AIR TV Shows"} movies={movies.onTheAirTVshows} />
           <MovieList title={"Popular TV Shows"} movies={movies.popularTVshows} />
           <MovieList title={"Top Rated TV Shows"} movies={movies.topRatedTVshows} />
         </div>
