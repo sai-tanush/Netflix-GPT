@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
-import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
 const BrowseNavbar = () => {
@@ -32,11 +32,13 @@ const BrowseNavbar = () => {
   }, []);
 
   function handleSignOut() {
-    signOut(auth).then(() => {
-      navigate("/login");
-    }).catch((error) => {
-      console.log("error=",error);
-    });
+    signOut(auth)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log("error=", error);
+      });
   }
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
@@ -89,12 +91,12 @@ const BrowseNavbar = () => {
                 height={28}
                 width={28}
               />
-            <button
-              onClick={toggleDropdown}
-              className=" text-black rounded-md flex items-center focus:outline-none"
-            >
-              <ChevronDown stroke="white" className="w-5 h-5" />
-            </button>
+              <button
+                onClick={toggleDropdown}
+                className=" text-black rounded-md flex items-center focus:outline-none"
+              >
+                <ChevronDown stroke="white" className="w-5 h-5" />
+              </button>
             </li>
             {isOpen && (
               <div className="absolute right-10 top-14 mt-2 w-40 bg-black border border-gray-200 shadow-lg z-10">
@@ -131,7 +133,7 @@ const BrowseNavbar = () => {
                       Help Centre
                     </a>
                   </li>
-                  <hr/>
+                  <hr />
                   <li>
                     <a
                       href="#"

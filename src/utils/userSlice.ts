@@ -1,10 +1,10 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 type UserState = {
-  uid: string,
-  email: string,
+  uid: string;
+  email: string;
   displayName: string | null;
-}
+};
 
 const initialState: UserState | null = null;
 const userSlice = createSlice({

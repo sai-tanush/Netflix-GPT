@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
 import useMovieTrailer from "../hooks/useMovietrailer";
 
-
-
-const VideoBackground = ({ movieId }: { movieId: number }) => {  
-  useMovieTrailer({movieId});
-  const trailerVideo = useSelector((store:RootState)=> store.movies?.trailerVideo)  
+const VideoBackground = ({ movieId }: { movieId: number }) => {
+  useMovieTrailer({ movieId });
+  const trailerVideo = useSelector(
+    (store: RootState) => store.movies?.trailerVideo
+  );
 
   return (
     <div>
@@ -21,6 +21,6 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
       ></iframe>
     </div>
   );
-}; 
+};
 
 export default VideoBackground;

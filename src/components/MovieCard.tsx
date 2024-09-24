@@ -1,18 +1,15 @@
-import { IMG_CDN_URL } from '../utils/constants'
+import { IMG_CDN_URL } from "../utils/constants";
 
 interface PosterPathProps {
-  posterPath: string
+  posterPath: string;
 }
 
-
-const MovieCard:React.FC<PosterPathProps>= ({ posterPath }) => {
+const MovieCard: React.FC<PosterPathProps> = ({ posterPath }) => {
   return (
-    <div className='w-48 pr-4'>
+    <div className="w-48 pr-4">
       <img alt="Move Poster" src={IMG_CDN_URL + posterPath} />
     </div>
-  )
-}
+  );
+};
 
-export default MovieCard
-
-//02:53:54
+export default MovieCard;
