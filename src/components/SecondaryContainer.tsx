@@ -16,6 +16,7 @@ const SecondaryContainer: React.FC = () => {
           <MovieList title={"Airing Today TV Shows"} movies={movies.airingTodayTVshows} />
           <MovieList title={"On the AIR TV Shows"} movies={movies.onTheAirTVshows} />
           <MovieList title={"Popular TV Shows"} movies={movies.popularTVshows} />
+          <MovieList title={"Top Rated TV Shows"} movies={movies.topRatedTVshows} />
         </div>
       </div>
     )
