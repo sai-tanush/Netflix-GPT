@@ -72,7 +72,7 @@ const BrowseNavbar = () => {
           </div>
           <ul className="flex space-x-3 mt-6 ml-6 cursor-pointer">
             {navItems.map((item) => (
-              <li>{item}</li>
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
@@ -100,7 +100,7 @@ const BrowseNavbar = () => {
               <div className="absolute right-10 top-14 mt-2 w-40 bg-black border border-gray-200 shadow-lg z-10">
                 <ul className="py-1 text-sm">
                   {profileItems.map((item) => (
-                    <li>
+                    <li key={item}>
                       <a
                         href="#"
                         className="block px-4 py-2 text-white hover:bg-gray-800"
