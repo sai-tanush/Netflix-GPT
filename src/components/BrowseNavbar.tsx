@@ -69,7 +69,7 @@ const BrowseNavbar = () => {
     console.log("button is clicked");
   };
   
-  const handleLanguageChange = (e) => {
+  const handleLanguageChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(changeLanguage(e.target.value))
   }
 
