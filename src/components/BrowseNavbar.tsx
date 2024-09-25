@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { RootState } from "../utils/appStore";
 import { SUPPORTED_LANGUAGES } from "../utils/languageConstant";
+import { changeLanguage } from "../utils/configSlice";
 
 const navItems = [
   "Home",
@@ -62,10 +63,16 @@ const BrowseNavbar = () => {
         console.log("error=", error);
       });
   };
+
   const handleGptSearch = () => {
     dispatch(toggleGptSearchView());
     console.log("button is clicked");
   };
+  
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value))
+  }
+
 
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
@@ -98,7 +105,7 @@ const BrowseNavbar = () => {
                 </button>
               ) : (
                 <>
-                  <select className="bg-black text-white px-1 py-1 mr-3 border border-gray-600">
+                  <select className="bg-black text-white px-1 py-1 mr-3 border border-gray-600" onChange={handleLanguageChange}>
                     {SUPPORTED_LANGUAGES.map((lang) => (
                       <option key={lang.identifier} value={lang.identifier}>
                         {lang.name}
