@@ -47,7 +47,7 @@ const BrowseNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  function handleSignOut() {
+  const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         navigate("/login");
@@ -55,6 +55,9 @@ const BrowseNavbar = () => {
       .catch((error) => {
         console.log("error=", error);
       });
+  }
+  const handleGptSearch = () => {
+
   }
 
   return (
@@ -77,7 +80,10 @@ const BrowseNavbar = () => {
           </ul>
         </div>
         <div className="mt-6 mr-10">
-          <ul className="flex space-x-4 cursor-pointer">
+          <ul className="flex space-x-3 cursor-pointer">
+          <li>
+            <button className="py-1 px-4 bg-purple-700 rounded" onClick={handleGptSearch}>GPT Search</button>
+          </li>
             <li>
               <Search />
             </li>
@@ -87,10 +93,9 @@ const BrowseNavbar = () => {
             <li>
               <Bell />
             </li>
-            <li className="flex">
-              <img src={PROFILE_URL} height={28} width={28} />
+            <li className="flex" onClick={toggleDropdown}>
+              <img src={PROFILE_URL} width={32} />
               <button
-                onClick={toggleDropdown}
                 className=" text-black rounded-md flex items-center focus:outline-none"
               >
                 <ChevronDown stroke="white" className="w-5 h-5" />
