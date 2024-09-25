@@ -1,37 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../utils/appStore";
-import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { useNowPlayingMovies } from "../hooks/useNowPlayingMovies";
+import BrowseNavbar from "./BrowseNavbar";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
+import { usePopularMovies } from "../hooks/usePopularMovies";
+import { useTopRatedMovies } from "../hooks/useTopRatedMovies";
+import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
+import { useAiringTodayTVshows } from "../hooks/useAiringTodayTVshows";
+import { usePopularTVshows } from "../hooks/usePopularTVshows";
+import { useTopRatedTVshows } from "../hooks/useTopRatedTVshows";
 
 const Browse: React.FC = () => {
-  const cartUser = useSelector((state: RootState) => state.user);
-
-  console.log("Browse Page Rendering ....");
-  const navigate = useNavigate();
-
-  function handleSignOut() {
-    signOut(auth).then(() => {
-      navigate("/login");
-    }).catch((error) => {
-      console.log("error=",error);
-    });
-  }
+  useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  useUpcomingMovies();
+  useAiringTodayTVshows();
+  usePopularTVshows();
+  useTopRatedTVshows();
 
   return (
     <>
-      <div className="relative w-screen h-screen flex flex-col justify-center items-center">
-        <p className="text-3xl font-bold">Browse</p>
-        <button
-          className="w-auto p-2 my-4 bg-red-700 rounded-lg text-white"
-          onClick={handleSignOut}
-        >
-          SignOut
-        </button>
-      </div>
-      <div className="absolute top-2 right-2">
-        <p>User-<span className="text-black font-bold">{cartUser.displayName}</span></p>
+      <div className="relative w-screen min-h-screen no-scrollable">
+        <BrowseNavbar />
+        <MainContainer />
+        <SecondaryContainer />
       </div>
     </>
   );
