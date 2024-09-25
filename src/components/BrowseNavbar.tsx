@@ -5,8 +5,9 @@ import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 import { PROFILE_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleGptSearchView } from "../utils/gptSlice";
+import { RootState } from "../utils/appStore";
 
 const navItems = [
   "Home",
@@ -28,6 +29,7 @@ const BrowseNavbar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const gptPage = useSelector((store: RootState) => store.gpt?.showGptSearch);
 
   // Close the dropdown when clicking outside
   useEffect(() => {
@@ -86,7 +88,8 @@ const BrowseNavbar = () => {
         <div className="mt-6 mr-10">
           <ul className="flex space-x-3 cursor-pointer">
           <li>
-            <button className="py-1 px-4 bg-purple-700 rounded" onClick={handleGptSearch}>GPT Search</button>
+            {!gptPage ? <button className="py-1 px-4 bg-purple-700 rounded" onClick={handleGptSearch}>GPT Search</button>
+             : <button className="py-1 px-4 bg-red-700 rounded" onClick={handleGptSearch}>Back to Home</button> }            
           </li>
             <li>
               <Search />
