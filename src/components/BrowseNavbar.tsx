@@ -9,8 +9,8 @@ import { useDispatch } from "react-redux";
 import { toggleGptSearchView } from "../utils/gptSlice";
 
 const navItems = [
-  "HomeTV",
-  "Shows",
+  "Home",
+  "TV Shows",
   "Movies",
   "New & Popular",
   "My List",
