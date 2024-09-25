@@ -9,8 +9,14 @@ import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
 import { useAiringTodayTVshows } from "../hooks/useAiringTodayTVshows";
 import { usePopularTVshows } from "../hooks/usePopularTVshows";
 import { useTopRatedTVshows } from "../hooks/useTopRatedTVshows";
+import { useSelector } from "react-redux";
+import { RootState } from "../utils/appStore";
+import GptPage from "./GptPage";
 
 const Browse: React.FC = () => {
+  const showGptSection = useSelector(
+    (store: RootState) => store.gpt?.showGptSearch
+  );
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
@@ -19,12 +25,20 @@ const Browse: React.FC = () => {
   usePopularTVshows();
   useTopRatedTVshows();
 
+  console.log("showGptSection = ", showGptSection);
+
   return (
     <>
       <div className="relative w-screen min-h-screen no-scrollable">
         <BrowseNavbar />
-        <MainContainer />
-        <SecondaryContainer />
+        {showGptSection ? (
+          <GptPage />
+        ) : (
+          <>
+            <MainContainer />
+            <SecondaryContainer />
+          </>
+        )}
       </div>
     </>
   );
