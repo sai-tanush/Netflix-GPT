@@ -1,3 +1,12 @@
+export const SUPPORTED_LANGUAGES = [
+    {identifier: "en", name: "English"},
+    {identifier: "hindi", name: "Hindi"},
+    {identifier: "spanish", name: "Spanish"},
+    {identifier: "german", name: "German"},
+    {identifier: "japanese", name: "Japanese"},
+    {identifier: "chinese", name: "Chinese"},
+]
+
 const lang = {
     en: {
         search: "Search",
