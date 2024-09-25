@@ -8,6 +8,7 @@ import { PROFILE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { RootState } from "../utils/appStore";
+import { SUPPORTED_LANGUAGES } from "../utils/languageConstant";
 
 const navItems = [
   "Home",
@@ -60,11 +61,11 @@ const BrowseNavbar = () => {
       .catch((error) => {
         console.log("error=", error);
       });
-  }
+  };
   const handleGptSearch = () => {
-      dispatch(toggleGptSearchView());
-      console.log("button is clicked");
-  }
+    dispatch(toggleGptSearchView());
+    console.log("button is clicked");
+  };
 
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
@@ -87,10 +88,32 @@ const BrowseNavbar = () => {
         </div>
         <div className="mt-6 mr-10">
           <ul className="flex space-x-3 cursor-pointer">
-          <li>
-            {!gptPage ? <button className="py-1 px-4 bg-purple-700 rounded" onClick={handleGptSearch}>GPT Search</button>
-             : <button className="py-1 px-4 bg-red-700 rounded" onClick={handleGptSearch}>Back to Home</button> }            
-          </li>
+            <li>
+              {!gptPage ? (
+                <button
+                  className="py-1 px-4 bg-purple-700 rounded"
+                  onClick={handleGptSearch}
+                >
+                  GPT Search
+                </button>
+              ) : (
+                <>
+                  <select className="bg-black text-white px-1 py-1 mr-3 border border-gray-600">
+                    {SUPPORTED_LANGUAGES.map((lang) => (
+                      <option key={lang.identifier} value={lang.identifier}>
+                        {lang.name}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    className="py-1 px-4 bg-red-700 rounded"
+                    onClick={handleGptSearch}
+                  >
+                    Back to Home
+                  </button>
+                </>
+              )}
+            </li>
             <li>
               <Search />
             </li>
@@ -102,9 +125,7 @@ const BrowseNavbar = () => {
             </li>
             <li className="flex" onClick={toggleDropdown}>
               <img src={PROFILE_URL} width={32} />
-              <button
-                className=" text-black rounded-md flex items-center focus:outline-none"
-              >
+              <button className=" text-black rounded-md flex items-center focus:outline-none">
                 <ChevronDown stroke="white" className="w-5 h-5" />
               </button>
             </li>
