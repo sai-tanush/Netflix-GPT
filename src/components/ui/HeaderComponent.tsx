@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { addUser, removeUser } from "../../utils/userSlice";
-import NETFLIX_LOGO from "../../utils/constants";
+import NETFLIX_BG from "../../utils/constants";
 
 const HeaderComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const HeaderComponent: React.FC = () => {
   return (
     <div>
       <img
-        src={NETFLIX_LOGO}
+        src={NETFLIX_BG}
         alt="background_img"
         height="100vh"
         className="relative bg-gradient-to-b from-black"
