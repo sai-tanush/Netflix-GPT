@@ -1,40 +1,65 @@
-import { useSelector } from "react-redux"
-import lang from "../utils/languageConstant"
-import { RootState } from "../utils/appStore"
-import { useRef } from "react";
+import { useSelector } from "react-redux";
+import lang from "../utils/languageConstant";
+import { RootState } from "../utils/appStore";
+import { useRef, useState } from "react";
 import model from "../utils/geminiai";
 
+
 const GptSearchBar = () => {
+  const [movies, setMovies] = useState<string[] | null>(null);
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
   const searchInputText = useRef(null);
 
-  const handleSearchBarSumbit = (e:React.ChangeEvent<HTMLFormElement>) => {
+  const handleSearchBarSumbit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
+  };
 
-  const handleGptSearchClick = async() => {
-    
-    const geminiAIQuery = "Act as a Movie Recommendation system and suggest some movies for the query : " 
-    + searchInputText.current.value + "Only give me names of 10 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
+  const handleGptSearchClick = async () => {
+    const geminiAIQuery =
+      "Act as a Movie Recommendation system and suggest some movies for the query : " +
+      searchInputText.current.value +
+      "Only give me names of 10 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
 
-    const geminiResults = async() => {
+    //Fetch Movies list from geminin api
+    const geminiResults = async () => {
       const prompt = geminiAIQuery;
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      const geminiMovies = response?.candidates[0]?.content?.parts[0]?.text?.split(",");
+      const geminiMovies =response?.candidates[0]?.content?.parts[0]?.text?.split(",").map((movie: string) => movie.trim());
+
+      if(geminiMovies){
+        setMovies(geminiMovies);
+      }else{
+        console.log("Geminin ai Error");
+      }
       console.log("Gemini Movies = ", geminiMovies);
-    }
+    };
     geminiResults();
-  }
+  };
+
+  console.log("movies stored = ", movies);
 
   return (
     <div className="pt-[8%] flex justify-center">
-        <form className="bg-black py-2 px-4 rounded-md w-1/2 grid grid-cols-12" onSubmit={handleSearchBarSumbit}>
-            <input ref={searchInputText} type="text" className="px-3 col-span-9 h-[2.9rem] rounded-md" placeholder={lang[currentLanguage].gptSearchPlaceholder} />
-            <button className="px-4 py-2 ml-3 col-span-3 h-[2.9rem] bg-red-700 rounded-md text-white" onClick={handleGptSearchClick}>{lang[currentLanguage].search}</button>
-        </form>
+      <form
+        className="bg-black py-2 px-4 rounded-md w-1/2 grid grid-cols-12"
+        onSubmit={handleSearchBarSumbit}
+      >
+        <input
+          ref={searchInputText}
+          type="text"
+          className="px-3 col-span-9 h-[2.9rem] rounded-md"
+          placeholder={lang[currentLanguage].gptSearchPlaceholder}
+        />
+        <button
+          className="px-4 py-2 ml-3 col-span-3 h-[2.9rem] bg-red-700 rounded-md text-white"
+          onClick={handleGptSearchClick}
+        >
+          {lang[currentLanguage].search}
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default GptSearchBar
+export default GptSearchBar;
