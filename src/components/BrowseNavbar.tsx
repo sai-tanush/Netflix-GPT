@@ -5,6 +5,8 @@ import { Bell, ChevronDown, Search } from "lucide-react";
 import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 import { PROFILE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const navItems = [
   "HomeTV",
@@ -25,6 +27,7 @@ const BrowseNavbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Close the dropdown when clicking outside
   useEffect(() => {
@@ -57,7 +60,8 @@ const BrowseNavbar = () => {
       });
   }
   const handleGptSearch = () => {
-
+      dispatch(toggleGptSearchView());
+      console.log("button is clicked");
   }
 
   return (
