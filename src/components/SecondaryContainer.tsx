@@ -8,7 +8,7 @@ const SecondaryContainer: React.FC = () => {
   return (
     movies.nowPlayingMovies && (
       <div className="bg-black">
-        <div className="relative -mt-72 z-50">
+        <div className="relative md:-mt-72 z-50">
           <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
           <MovieList title={"Upcoming"} movies={movies.upcommingMovies} />
           <MovieList title={"Popular"} movies={movies.popularMovies} />

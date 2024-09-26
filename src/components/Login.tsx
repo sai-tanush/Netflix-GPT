@@ -101,9 +101,9 @@ const Login: React.FC = () => {
       <HeaderComponent />
       <form
         onSubmit={handleSubmit}
-        className="absolute w-1/4 p-12 text-white bg-black top-0 mx-auto left-0 right-0 my-44 rounded-lg bg-opacity-85 "
+        className="absolute w-full md:w-1/2 lg:w-1/4 p-12 text-white bg-black top-0 mx-auto left-0 right-0 my-44 rounded-lg bg-opacity-85 "
       >
-        <p className="text-3xl pb-4 pl-2 font-semibold">{signBtn}</p>
+        <p className="text-2xl md:text-3xl pb-4 pl-2 font-semibold">{signBtn}</p>
         {isSignUp && (
           <input
             ref={name}

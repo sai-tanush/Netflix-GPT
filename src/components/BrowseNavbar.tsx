@@ -76,25 +76,25 @@ const BrowseNavbar = () => {
 
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
-      <div className="flex justify-between">
-        <div className="flex">
+      <div className="flex flex-col justify-between md:flex-row">
+        <div className="flex justify-center md:justify-start">
           <div>
             <img
               src={logo}
               alt="logo"
               height={100}
               width={190}
-              className="ml-10"
+              className="md:ml-10"
             />
           </div>
-          <ul className="flex space-x-3 mt-6 ml-6 cursor-pointer">
+          <ul className="hidden space-x-3 mt-6 ml-6 cursor-pointer lg:flex">
             {navItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
-        <div className="mt-6 mr-10">
-          <ul className="flex space-x-3 cursor-pointer">
+        <div className="mt-0 ml-4 md:mt-6 md:ml-0 mr-10">
+          <ul className="flex space-x-3 cursor-pointer justify-end md:justify-start">
             <li>
               {!gptPage ? (
                 <button
@@ -105,7 +105,8 @@ const BrowseNavbar = () => {
                 </button>
               ) : (
                 <>
-                  <select className="bg-black text-white px-1 py-1 mr-3 border border-gray-600" onChange={handleLanguageChange}>
+                  <select className="bg-black ml-2 text-white px-1 py-1 mr-3
+                   border border-gray-600 md:ml-0" onChange={handleLanguageChange}>
                     {SUPPORTED_LANGUAGES.map((lang) => (
                       <option key={lang.identifier} value={lang.identifier}>
                         {lang.name}
@@ -113,7 +114,7 @@ const BrowseNavbar = () => {
                     ))}
                   </select>
                   <button
-                    className="py-1 px-4 bg-red-700 rounded"
+                    className="py-1 px-4 bg-red-700 rounded text-sm md:text-md md:h-[2.25rem]"
                     onClick={handleGptSearch}
                   >
                     Back to Home
@@ -121,13 +122,13 @@ const BrowseNavbar = () => {
                 </>
               )}
             </li>
-            <li>
+            <li className="hidden md:block">
               <Search />
             </li>
-            <li>
+            <li className="hidden md:block">
               <p>Children</p>
             </li>
-            <li>
+            <li className="hidden md:block">
               <Bell />
             </li>
             <li className="flex" onClick={toggleDropdown}>

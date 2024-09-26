@@ -62,9 +62,9 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[8%] flex justify-center">
+    <div className="pt-[35%] md:pt-[8%] flex justify-center">
       <form
-        className="bg-black py-2 px-4 rounded-md w-1/2 grid grid-cols-12"
+        className="bg-black py-2 px-4 rounded-md w-full md:w-1/2 grid grid-cols-12"
         onSubmit={handleSearchBarSumbit}
       >
         <input
