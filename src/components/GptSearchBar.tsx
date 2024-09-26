@@ -4,7 +4,7 @@ import { RootState } from "../utils/appStore";
 import { useRef } from "react";
 import model from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
-import { addGptMovies } from "../utils/gptSlice";
+import { addGptMovies, addGptSearchedMovies } from "../utils/gptSlice";
 
 
 const GptSearchBar = () => {
@@ -40,6 +40,7 @@ const GptSearchBar = () => {
         console.log("Geminin ai Error");
       }
       console.log("Gemini Movies = ", geminiMovies);
+      dispatch(addGptSearchedMovies(geminiMovies));
       
       //search Movies in TMDB DataBase
       const promiseArray = geminiMovies?.map(movie => searchMovieTMDB(movie)); //->returns promises of movies
