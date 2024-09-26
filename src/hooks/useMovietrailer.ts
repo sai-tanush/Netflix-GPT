@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import { RootState } from "../utils/appStore";
 
 type VideoDetails = {
   id: string;
@@ -14,10 +15,13 @@ type VideoDetails = {
   site: string;
   size: number;
   type: "Trailer";
-}
+};
 
 const useMovieTrailer = ({ movieId }: { movieId: number }) => {
   const dispatch = useDispatch();
+  const movieTrailer = useSelector(
+    (store: RootState) => store.movies.trailerVideo
+  );
 
   const getMovieVideo = async () => {
     const data = await fetch(
@@ -33,7 +37,9 @@ const useMovieTrailer = ({ movieId }: { movieId: number }) => {
   };
 
   useEffect(() => {
-    getMovieVideo();
+    if (!movieTrailer) {
+      getMovieVideo();
+    }
   }, []);
 };
 
