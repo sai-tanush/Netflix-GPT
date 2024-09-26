@@ -5,7 +5,7 @@ import GptSearchBar from "./GptSearchBar";
 const GptPage: React.FC = () => {
   return (
     <div className="w-screen min-h-screen">
-      <div className="absolute -z-30">
+      <div className="fixed -z-30">
         <img
           src={NETFLIX_BG}
           alt="background_img"
