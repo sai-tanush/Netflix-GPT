@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import lang from "../utils/languageConstant";
 import { RootState } from "../utils/appStore";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import model from "../utils/geminiai";
+import { API_OPTIONS } from "../utils/constants";
 
 
 const GptSearchBar = () => {
-  const [movies, setMovies] = useState<string[] | null>(null);
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
   const searchInputText = useRef(null);
 
@@ -14,11 +14,18 @@ const GptSearchBar = () => {
     e.preventDefault();
   };
 
-  const handleGptSearchClick = async () => {
+  const searchMovieTMDB = async(movie: string) => {
+    const data = await fetch("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1", API_OPTIONS)
+    const jsonData = await data.json();
+    
+    return jsonData.results;
+  }
+
+  const handleGotSearchClick = async () => {
     const geminiAIQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchInputText.current.value +
-      "Only give me names of 10 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
+      "Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
 
     //Fetch Movies list from geminin api
     const geminiResults = async () => {
@@ -27,17 +34,23 @@ const GptSearchBar = () => {
       const response = await result.response;
       const geminiMovies =response?.candidates[0]?.content?.parts[0]?.text?.split(",").map((movie: string) => movie.trim());
 
-      if(geminiMovies){
-        setMovies(geminiMovies);
-      }else{
+      if(!geminiMovies){
         console.log("Geminin ai Error");
       }
       console.log("Gemini Movies = ", geminiMovies);
+      
+      //search Movies in TMDB DataBase
+      const promiseArray = geminiMovies?.map(movie => searchMovieTMDB(movie)); //->returns promises of movies
+      try{
+        const tmdbResults = await Promise.all(promiseArray);
+        console.log("TMDB Results = ", tmdbResults);
+      } catch(error){
+        console.log("Error fetching TMDB results", error);
+      }
+
     };
     geminiResults();
   };
-
-  console.log("movies stored = ", movies);
 
   return (
     <div className="pt-[8%] flex justify-center">
@@ -53,7 +66,7 @@ const GptSearchBar = () => {
         />
         <button
           className="px-4 py-2 ml-3 col-span-3 h-[2.9rem] bg-red-700 rounded-md text-white"
-          onClick={handleGptSearchClick}
+          onClick={handleGotSearchClick}
         >
           {lang[currentLanguage].search}
         </button>
