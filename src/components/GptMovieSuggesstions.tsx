@@ -7,7 +7,7 @@ const GptMovieSuggesstions:React.FC = () => {
   if(!gptMovies) return null;
 
   return (
-    <div className="p-4 my-2 mx-3 bg-black text-white bg-opacity-55">
+    <div className="p-4 mt-2 mx-3 bg-black text-white">
       <div>
         {gptMovies.map((movieName, index) => (
           <MovieList key={movieName} title={movieName} movies={movies[index]} />
