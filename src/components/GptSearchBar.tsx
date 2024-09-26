@@ -1,14 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstant";
 import { RootState } from "../utils/appStore";
 import { useRef } from "react";
 import model from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
+import { addGptMovies } from "../utils/gptSlice";
 
 
 const GptSearchBar = () => {
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
   const searchInputText = useRef(null);
+  const dispatch = useDispatch();
 
   const handleSearchBarSumbit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +46,7 @@ const GptSearchBar = () => {
       try{
         const tmdbResults = await Promise.all(promiseArray);
         console.log("TMDB Results = ", tmdbResults);
+        dispatch(addGptMovies(tmdbResults));
       } catch(error){
         console.log("Error fetching TMDB results", error);
       }
