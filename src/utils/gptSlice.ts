@@ -23,11 +23,13 @@ type MoviesCollection = Movie[][];
 
 type GptState = {
   showGptSearch: boolean
+  gptMovies: string[]
   movies: MoviesCollection
 };
 
 const initialState: GptState = {
     showGptSearch: false,
+    gptMovies: [],
     movies: [],
 }
 const gptSlice = createSlice({
@@ -39,9 +41,12 @@ const gptSlice = createSlice({
     },
     addGptMovies: (state, action) => {
       state.movies = action.payload;
+    },
+    addGptSearchedMovies: (state, action) => {
+      state.gptMovies = action.payload;
     }
   },
 });
 
-export const { toggleGptSearchView, addGptMovies } = gptSlice.actions;
+export const { toggleGptSearchView, addGptMovies, addGptSearchedMovies } = gptSlice.actions;
 export default gptSlice.reducer;
