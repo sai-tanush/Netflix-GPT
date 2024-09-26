@@ -6,7 +6,6 @@ import model from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovies, addGptSearchedMovies } from "../utils/gptSlice";
 
-
 const GptSearchBar = () => {
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
   const searchInputText = useRef(null);
@@ -16,12 +15,17 @@ const GptSearchBar = () => {
     e.preventDefault();
   };
 
-  const searchMovieTMDB = async(movie: string) => {
-    const data = await fetch("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1", API_OPTIONS)
+  const searchMovieTMDB = async (movie: string) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_OPTIONS
+    );
     const jsonData = await data.json();
-    
+
     return jsonData.results;
-  }
+  };
 
   const handleGotSearchClick = async () => {
     const geminiAIQuery =
@@ -34,24 +38,25 @@ const GptSearchBar = () => {
       const prompt = geminiAIQuery;
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      const geminiMovies =response?.candidates[0]?.content?.parts[0]?.text?.split(",").map((movie: string) => movie.trim());
+      const geminiMovies = response?.candidates[0]?.content?.parts[0]?.text
+        ?.split(",")
+        .map((movie: string) => movie.trim());
 
-      if(!geminiMovies){
+      if (!geminiMovies) {
         console.log("Geminin ai Error");
       }
       console.log("Gemini Movies = ", geminiMovies);
       dispatch(addGptSearchedMovies(geminiMovies));
-      
+
       //search Movies in TMDB DataBase
-      const promiseArray = geminiMovies?.map(movie => searchMovieTMDB(movie)); //->returns promises of movies
-      try{
+      const promiseArray = geminiMovies?.map((movie) => searchMovieTMDB(movie)); //->returns promises of movies
+      try {
         const tmdbResults = await Promise.all(promiseArray);
         console.log("TMDB Results = ", tmdbResults);
         dispatch(addGptMovies(tmdbResults));
-      } catch(error){
+      } catch (error) {
         console.log("Error fetching TMDB results", error);
       }
-
     };
     geminiResults();
   };
