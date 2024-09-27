@@ -9,7 +9,7 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> = ({ title, movies, tvshows }) => {
-  const posterType = movies? movies : tvshows;
+  const posterType = movies ? movies : tvshows;
   return (
     <div className="p-6 -mb-9">
       <p className="text-xl text-white ml-9 mb-2">{title}</p>
