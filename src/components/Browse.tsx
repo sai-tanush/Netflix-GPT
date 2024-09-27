@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNowPlayingMovies } from "../hooks/useNowPlayingMovies";
 import BrowseNavbar from "./BrowseNavbar";
 import MainContainer from "./MainContainer";
@@ -9,7 +10,6 @@ import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
 import { useAiringTodayTVshows } from "../hooks/useAiringTodayTVshows";
 import { usePopularTVshows } from "../hooks/usePopularTVshows";
 import { useTopRatedTVshows } from "../hooks/useTopRatedTVshows";
-import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
 import GptPage from "./GptPage";
 
