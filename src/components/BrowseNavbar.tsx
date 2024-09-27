@@ -68,11 +68,10 @@ const BrowseNavbar = () => {
     dispatch(toggleGptSearchView());
     console.log("button is clicked");
   };
-  
-  const handleLanguageChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(changeLanguage(e.target.value))
-  }
 
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <div className="absolute w-screen z-50 text-white bg-gradient-to-b from-black">
@@ -105,8 +104,11 @@ const BrowseNavbar = () => {
                 </button>
               ) : (
                 <>
-                  <select className="bg-black ml-2 text-white px-1 py-1 mr-3
-                   border border-gray-600 md:ml-0" onChange={handleLanguageChange}>
+                  <select
+                    className="bg-black ml-2 text-white px-1 py-1 mr-3
+                   border border-gray-600 md:ml-0"
+                    onChange={handleLanguageChange}
+                  >
                     {SUPPORTED_LANGUAGES.map((lang) => (
                       <option key={lang.identifier} value={lang.identifier}>
                         {lang.name}
