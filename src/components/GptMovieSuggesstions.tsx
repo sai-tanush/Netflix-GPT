@@ -8,11 +8,9 @@ const GptMovieSuggesstions: React.FC = () => {
 
   return (
     <div className="p-4 mt-2 mx-3 bg-black text-white bg-opacity-70">
-      <div>
         {gptMovies.map((movieName, index) => (
           <MovieList key={movieName} title={movieName} movies={movies[index]} />
         ))}
-      </div>
     </div>
   );
 };
