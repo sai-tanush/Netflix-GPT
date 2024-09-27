@@ -15,10 +15,10 @@ const GptPage: React.FC = () => {
         />
         <div className="absolute top-0 left-0 w-screen h-[100%] bg-black bg-opacity-70"></div>
       </div>
-    <div className="w-screen min-h-screen">
-      <GptSearchBar />
-      <GptMovieSuggesstions />
-    </div>
+      <div className="w-screen min-h-screen">
+        <GptSearchBar />
+        <GptMovieSuggesstions />
+      </div>
     </>
   );
 };
