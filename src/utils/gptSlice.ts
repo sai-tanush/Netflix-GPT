@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
 type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -22,31 +20,32 @@ type Movie = {
 type MoviesCollection = Movie[][];
 
 type GptState = {
-  showGptSearch: boolean
-  gptMovies: string[]
-  movies: MoviesCollection
+  showGptSearch: boolean;
+  gptMovies: string[];
+  movies: MoviesCollection;
 };
 
 const initialState: GptState = {
-    showGptSearch: false,
-    gptMovies: [],
-    movies: [],
-}
+  showGptSearch: false,
+  gptMovies: [],
+  movies: [],
+};
 const gptSlice = createSlice({
   name: "gpt",
   initialState,
   reducers: {
     toggleGptSearchView: (state) => {
-       state.showGptSearch = !state.showGptSearch;
+      state.showGptSearch = !state.showGptSearch;
     },
     addGptMovies: (state, action) => {
       state.movies = action.payload;
     },
     addGptSearchedMovies: (state, action) => {
       state.gptMovies = action.payload;
-    }
+    },
   },
 });
 
-export const { toggleGptSearchView, addGptMovies, addGptSearchedMovies } = gptSlice.actions;
+export const { toggleGptSearchView, addGptMovies, addGptSearchedMovies } =
+  gptSlice.actions;
 export default gptSlice.reducer;
