@@ -8,7 +8,7 @@ import { addGptMovies, addGptSearchedMovies } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
-  const searchInputText = useRef(null);
+  const searchInputText = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const handleSearchBarSumbit = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -30,9 +30,10 @@ const GptSearchBar = () => {
   const handleGotSearchClick = async () => {
     const geminiAIQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
-      searchInputText.current.value +
+      searchInputText.current?.value +
       "Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
 
+    console.log("Geminin Prompt = ", geminiAIQuery);
     //Fetch Movies list from geminin api
     const geminiResults = async () => {
       const prompt = geminiAIQuery;
