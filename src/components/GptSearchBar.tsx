@@ -39,9 +39,15 @@ const GptSearchBar = () => {
       const prompt = geminiAIQuery;
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      const geminiMovies = response?.candidates[0]?.content?.parts[0]?.text
-        ?.split(",")
-        .map((movie: string) => movie.trim());
+      
+      const geminiMovies =
+        Array.isArray(response?.candidates) &&
+        response.candidates.length > 0 &&
+        response.candidates[0]?.content?.parts?.[0]?.text
+          ? response.candidates[0].content.parts[0].text
+              .split(",")
+              .map((movie: string) => movie.trim())
+          : [];
 
       if (!geminiMovies) {
         console.log("Geminin ai Error");
