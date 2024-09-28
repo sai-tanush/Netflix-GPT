@@ -46,7 +46,7 @@ const Login: React.FC = () => {
             // Signed up
             const user = userCredential.user;
             updateProfile(user, {
-              displayName: name.current.value,
+              displayName: name.current?.value,
             })
               .then(() => {
                 // Profile updated!
