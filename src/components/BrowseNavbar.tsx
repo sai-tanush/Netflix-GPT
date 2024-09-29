@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import { auth } from "../utils/firebase";
 import { PROFILE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { toggleGptSearchView, clearGptMovies } from "../utils/gptSlice";
 import { RootState } from "../utils/appStore";
 import { SUPPORTED_LANGUAGES } from "../utils/languageConstant";
 import { changeLanguage } from "../utils/configSlice";
@@ -66,6 +66,7 @@ const BrowseNavbar = () => {
 
   const handleGptSearch = () => {
     dispatch(toggleGptSearchView());
+    dispatch(clearGptMovies());
     console.log("button is clicked");
   };
 
