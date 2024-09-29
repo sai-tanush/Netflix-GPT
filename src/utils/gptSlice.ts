@@ -43,6 +43,9 @@ const gptSlice = createSlice({
     addGptSearchedMovies: (state, action) => {
       state.gptMovies = action.payload;
     },
+    clearGptMovies: (state) => {
+      state.gptMovies = [];
+    }
   },
 });
 
