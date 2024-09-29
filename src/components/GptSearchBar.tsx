@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstant";
 import { RootState } from "../utils/appStore";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import model from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovies, addGptSearchedMovies } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
+  const [isError, setIsError] = useState<string | null>(null);
   const currentLanguage = useSelector((store: RootState) => store.config?.lang);
   const searchInputText = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const GptSearchBar = () => {
     const geminiAIQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchInputText.current?.value +
-      "Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun";
+      `Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun 
+       and if you cant find the required movies then just dont return nothing`;
 
     console.log("Geminin Prompt = ", geminiAIQuery);
     //Fetch Movies list from geminin api
@@ -39,20 +41,27 @@ const GptSearchBar = () => {
       const prompt = geminiAIQuery;
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      
-      const geminiMovies =
+      console.log("response = ", response);
+
+      if(response?.candidates[0]?.content?.parts[0].text?.includes('sorry')){
+        setIsError(response?.candidates[0]?.content?.parts[0].text);
+      }else{
+        const geminiMovies =
         Array.isArray(response?.candidates) &&
         response.candidates.length > 0 &&
         response.candidates[0]?.content?.parts?.[0]?.text
           ? response.candidates[0].content.parts[0].text
               .split(",")
               .map((movie: string) => movie.trim())
-          : [];
+          : null;
 
       if (!geminiMovies) {
-        console.log("Geminin ai Error");
+        if(typeof response === 'string'){
+          setIsError(response);
+        }else{
+          setIsError('We cannot suggest any movies with the content you searching!')
+        }
       }
-      console.log("Gemini Movies = ", geminiMovies);
       dispatch(addGptSearchedMovies(geminiMovies));
 
       //search Movies in TMDB DataBase
@@ -64,11 +73,18 @@ const GptSearchBar = () => {
       } catch (error) {
         console.log("Error fetching TMDB results", error);
       }
+
+      }
+
+      
     };
+
+
     geminiResults();
   };
 
   return (
+    <>
     <div className="pt-[35%] md:pt-[8%] flex justify-center">
       <form
         className="bg-black py-2 px-4 rounded-md w-full md:w-1/2 grid grid-cols-12"
@@ -86,9 +102,14 @@ const GptSearchBar = () => {
         >
           {lang[currentLanguage].search}
         </button>
-      </form>
+      </form>     
     </div>
+    {isError && <div className="text-center mt-6">
+      <p className="text-md text-red-600">{isError}</p>
+    </div>}
+    </>
   );
 };
+
 
 export default GptSearchBar;
