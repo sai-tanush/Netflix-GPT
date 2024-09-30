@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { checkValidEmail } from "../utils/validate";
-import HeaderComponent from "./ui/HeaderComponent";
+import { checkValidEmail } from "../../utils/validate";
+import HeaderComponent from "../ui/HeaderComponent";
 
 const ForgotPassword: React.FC = () => {
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);

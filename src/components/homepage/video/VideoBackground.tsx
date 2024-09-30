@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../utils/appStore";
-import useMovieTrailer from "../hooks/useMovietrailer";
+import useMovieTrailer from "../../../hooks/useMovietrailer";
+import { RootState } from "../../../utils/appStore";
 
 type VideoBackgroundProps = {
   movieId: number;

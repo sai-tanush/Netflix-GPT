@@ -18,7 +18,7 @@ interface IMovieDetails extends IPosterDetails {
   title: string;
   video: boolean;
 }
-interface ITVShowDetails extends IPosterDetails  {
+interface ITVShowDetails extends IPosterDetails {
   origin_country: string[];
   original_name: string;
   first_air_date: string;
@@ -100,5 +100,5 @@ export const {
   addPopularTVshows,
   addTopRatedTVshows,
 } = moviesSlice.actions;
-export type { IMovieDetails, ITVShowDetails};
+export type { IMovieDetails, ITVShowDetails };
 export default moviesSlice.reducer;
