@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../assets/logo.png";
 import { RootState } from "../../utils/appStore";
 import { auth } from "../../utils/firebase";
 import { clearGptMovies, toggleGptSearchView } from "../../utils/gptSlice";
 import { changeLanguage } from "../../utils/configSlice";
 import { SUPPORTED_LANGUAGES } from "../../utils/languageConstant";
 import { PROFILE_URL } from "../../utils/constants";
+import logo from "../../assets/logo.png";
 
 const navItems = [
   "Home",
