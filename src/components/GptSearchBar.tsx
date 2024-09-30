@@ -46,6 +46,7 @@ const GptSearchBar = () => {
       if(response?.candidates[0]?.content?.parts[0].text?.includes('sorry')){
         setIsError(response?.candidates[0]?.content?.parts[0].text);
       }else{
+        setIsError(null);
         const geminiMovies =
         Array.isArray(response?.candidates) &&
         response.candidates.length > 0 &&
@@ -74,11 +75,8 @@ const GptSearchBar = () => {
         console.log("Error fetching TMDB results", error);
       }
 
-      }
-
-      
+      }      
     };
-
 
     geminiResults();
   };
