@@ -67,7 +67,6 @@ const BrowseNavbar = () => {
   const handleGptSearch = () => {
     dispatch(toggleGptSearchView());
     dispatch(clearGptMovies());
-    console.log("button is clicked");
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
