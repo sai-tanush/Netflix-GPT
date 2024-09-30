@@ -25,8 +25,6 @@ const Browse: React.FC = () => {
   usePopularTVshows();
   useTopRatedTVshows();
 
-  console.log("showGptSection = ", showGptSection);
-
   return (
     <>
       <div className="relative w-screen min-h-screen no-scrollable">
