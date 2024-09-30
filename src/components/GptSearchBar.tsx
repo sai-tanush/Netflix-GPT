@@ -33,7 +33,7 @@ const GptSearchBar = () => {
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchInputText.current?.value +
       `Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun 
-       and if you cant find the required movies then just dont return nothing`;
+       and if you cant find the required movies then just dont return anything nor any message`;
 
     console.log("Geminin Prompt = ", geminiAIQuery);
     //Fetch Movies list from geminin api
@@ -43,39 +43,66 @@ const GptSearchBar = () => {
       const response = await result.response;
       console.log("response = ", response);
 
-      if(response?.candidates[0]?.content?.parts[0].text?.includes('sorry')){
-        setIsError(response?.candidates[0]?.content?.parts[0].text);
-      }else{
-        setIsError(null);
-        const geminiMovies =
-        Array.isArray(response?.candidates) &&
+      // if(response?.candidates[0]?.content?.parts[0].text?.includes('sorry')){
+      //   setIsError(response?.candidates[0]?.content?.parts[0].text);
+      // }else{
+      //   setIsError(null);
+      //   const geminiMovies =
+      //   Array.isArray(response?.candidates) &&
+      //   response.candidates.length > 0 &&
+      //   response.candidates[0]?.content?.parts?.[0]?.text
+      //     ? response.candidates[0].content.parts[0].text
+      //         .split(",")
+      //         .map((movie: string) => movie.trim())
+      //     : null;
+
+      // if (!geminiMovies) {
+      //   if(typeof response === 'string'){
+      //     setIsError(response);
+      //   }else{
+      //     setIsError('We cannot suggest any movies with the content you searching!')
+      //   }
+      // }
+      // dispatch(addGptSearchedMovies(geminiMovies));
+
+      // //search Movies in TMDB DataBase
+      // const promiseArray = geminiMovies?.map((movie) => searchMovieTMDB(movie)); //->returns promises of movies
+      // try {
+      //   const tmdbResults = await Promise.all(promiseArray);
+      //   console.log("TMDB Results = ", tmdbResults);
+      //   dispatch(addGptMovies(tmdbResults));
+      // } catch (error) {
+      //   console.log("Error fetching TMDB results", error);
+      // }
+
+      // }      
+      if (
+        response?.candidates &&
         response.candidates.length > 0 &&
         response.candidates[0]?.content?.parts?.[0]?.text
-          ? response.candidates[0].content.parts[0].text
-              .split(",")
-              .map((movie: string) => movie.trim())
-          : null;
-
-      if (!geminiMovies) {
-        if(typeof response === 'string'){
-          setIsError(response);
-        }else{
-          setIsError('We cannot suggest any movies with the content you searching!')
+      ) {
+        setIsError(null); // Clear previous error if any
+        const geminiMovies = response.candidates[0].content.parts[0].text
+          .split(",")
+          .map((movie: string) => movie.trim());
+  
+        dispatch(addGptSearchedMovies(geminiMovies));
+  
+        // Search Movies in TMDB DataBase
+        const promiseArray = geminiMovies.map((movie) => searchMovieTMDB(movie)); //-> returns promises of movies
+        try {
+          const tmdbResults = await Promise.all(promiseArray);
+          console.log("TMDB Results = ", tmdbResults);
+          dispatch(addGptMovies(tmdbResults));
+        } catch (error) {
+          console.log("Error fetching TMDB results", error);
         }
+      } else {
+        setIsError(
+          response?.candidates?.[0]?.content?.parts?.[0]?.text ||
+            "We cannot suggest any movies with the content you're searching!"
+        );
       }
-      dispatch(addGptSearchedMovies(geminiMovies));
-
-      //search Movies in TMDB DataBase
-      const promiseArray = geminiMovies?.map((movie) => searchMovieTMDB(movie)); //->returns promises of movies
-      try {
-        const tmdbResults = await Promise.all(promiseArray);
-        console.log("TMDB Results = ", tmdbResults);
-        dispatch(addGptMovies(tmdbResults));
-      } catch (error) {
-        console.log("Error fetching TMDB results", error);
-      }
-
-      }      
     };
 
     geminiResults();
