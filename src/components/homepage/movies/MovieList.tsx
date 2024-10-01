@@ -16,7 +16,7 @@ const MovieList: React.FC<MovieListProps> = ({ title, movies, tvshows }) => {
       <div className="flex overflow-x-scroll no-scrollbar">
         <div className="flex">
           {posterType?.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+            <MovieCard key={movie.id} posterPath={movie.poster_path} currMovie={movie} />
           ))}
         </div>
       </div>
