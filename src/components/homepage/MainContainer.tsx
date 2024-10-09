@@ -4,8 +4,7 @@ import VideoBackground from "./video/VideoBackground";
 import { RootState } from "../../utils/appStore";
 import { RANDOM_NUM } from "../../utils/constants";
 
-
-const MainContainer: React.FC = () => {
+const MainContainer= () => {
   const movies = useSelector(
     (store: RootState) => store.movies?.nowPlayingMovies
   );
