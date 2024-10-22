@@ -10,6 +10,7 @@ import { changeLanguage } from "../../utils/configSlice";
 import { SUPPORTED_LANGUAGES } from "../../utils/languageConstant";
 import { PROFILE_URL } from "../../utils/constants";
 import logo from "../../assets/logo.png";
+import { gptSelect } from "../../utils/userSlice";
 
 const navItems = [
   "Home",
@@ -67,6 +68,7 @@ const BrowseNavbar = () => {
   const handleGptSearch = () => {
     dispatch(toggleGptSearchView());
     dispatch(clearGptMovies());
+    dispatch(gptSelect());
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
