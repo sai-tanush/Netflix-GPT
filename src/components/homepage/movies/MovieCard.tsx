@@ -63,11 +63,20 @@ const MovieCard: React.FC<PosterPathProps> = ({ posterPath, currMovie }) => {
         </div>
       )}
       {isPosterClicked && (
-        <div className="absolute top-0 left-0 h-full w-full bg-black z-50">
-          <div className="flex justify-center items-center">
-            <p className="text-white font-2xl font-bold">{isMovie(currMovie) ? currMovie.title : currMovie.name}</p>
+        <div className="absolute top-0 left-0 h-screen w-screen mt-[-37%] bg-black z-50">
+          <div className="flex justify-end mr-[20%] mt-[2%]">
             <button className="bg-red-600 py-2 px-3 text-lg" 
             onClick={handlePosterCardClicked}>Back</button>
+          </div>
+          <div className="w-3/4 h-3/4 flex mx-auto mt-2">
+          <img alt="Move Poster" src={IMG_CDN_URL + posterPath} />
+          <div className="w-full h-full flex flex-col space-y-3 mx-[5%] mt-[12%]">
+          <p className="text-6xl text-center text-white mb-[5%]">{isMovie(currMovie) ? currMovie.title : currMovie.name}</p>
+          <p className="text-xl text-white"><span className="font-bold mr-5">Description:</span>{currMovie.overview}</p>   
+          <p className="text-xl text-white"><span className="font-bold mr-5">Released On:</span>{isMovie(currMovie) ? currMovie.release_date : currMovie.first_air_date}</p> 
+          <p className="text-xl text-white"><span className="font-bold mr-5">Rating:</span>{currMovie.vote_average}</p>
+          <p className="text-xl text-white"><span className="font-bold mr-5">Languages:</span>{currMovie.original_language}</p>        
+          </div>
           </div>
         </div>
       )}
