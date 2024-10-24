@@ -24,11 +24,11 @@ Built using React, TypeScript, and TailwindCSS, TasteFlix offers a sleek, respon
 ### Prerequisites
   * Install Node js in your computer
   * Setup firebase
-  * Get your GeminiAI API Key
+  * Get your GeminiAI API Key 
   * Get your TMDB API Key
 ### Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file placed in root directory
+To run this project, you will need to add the following environment variables to your .env file placed in root directory of your project
 
 `VITE_FIREBASE_API_KEY`
 
