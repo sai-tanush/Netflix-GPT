@@ -5,9 +5,10 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { checkValidEmail } from "../utils/validate";
-import HeaderComponent from "./ui/HeaderComponent";
-import { auth } from "../utils/firebase";
+import { checkValidEmail } from "../../utils/validate";
+import { auth } from "../../utils/firebase";
+import HeaderComponent from "../ui/HeaderComponent";
+
 
 type Details = {
   email: string;
@@ -15,7 +16,6 @@ type Details = {
 };
 
 const Login: React.FC = () => {
-  
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errorMessage, setIsErrorMessage] = useState<string | null>(null);
   const [details, setDetails] = useState<Details>({
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
             // Signed up
             const user = userCredential.user;
             updateProfile(user, {
-              displayName: name.current.value,
+              displayName: name.current?.value,
             })
               .then(() => {
                 // Profile updated!
@@ -101,9 +101,11 @@ const Login: React.FC = () => {
       <HeaderComponent />
       <form
         onSubmit={handleSubmit}
-        className="absolute w-1/4 p-12 text-white bg-black top-0 mx-auto left-0 right-0 my-44 rounded-lg bg-opacity-85 "
+        className="absolute w-full md:w-1/2 lg:w-1/4 p-12 text-white bg-black top-0 mx-auto left-0 right-0 my-44 rounded-lg bg-opacity-85 "
       >
-        <p className="text-3xl pb-4 pl-2 font-semibold">{signBtn}</p>
+        <p className="text-2xl md:text-3xl pb-4 pl-2 font-semibold">
+          {signBtn}
+        </p>
         {isSignUp && (
           <input
             ref={name}

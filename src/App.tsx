@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Body from "./components/Body";
-import Login from "./components/Login";
-import ForgotPassword from "./components/ForgotPassword";
-import Browse from "./components/Browse";
+import ForgotPassword from "./components/auth/ForgotPassword";
+import Login from "./components/auth/Login";
+import ProtectedRoutes from "./components/protectedroutes/ProtecteRoutes";
+import Browse from "./components/homepage/Browse";
 import "./index.css";
-import ProtectedRoutes from "./components/ProtecteRoutes";
 
 function App() {
   return (
