@@ -1,4 +1,4 @@
-**Notion GPT**
+****Notion GPT****
 
 **Notion GPT** is a feature-packed web application built with **React, TypeScript, Vite,** and styled using **TailwindCSS**. It delivers a smooth and interactive user experience. Below is a detailed breakdown of the implemented features:
 
