@@ -100,5 +100,5 @@ export const {
   addPopularTVshows,
   addTopRatedTVshows,
 } = moviesSlice.actions;
-export type { IMovieDetails, ITVShowDetails };
+export type { IMovieDetails, ITVShowDetails, IPosterDetails };
 export default moviesSlice.reducer;

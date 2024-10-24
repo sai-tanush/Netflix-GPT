@@ -34,7 +34,7 @@ const GptSearchBar = () => {
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchInputText.current?.value +
       `Only give me names of 5 movies with comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gya, Hum Apke Hai Kaun 
-       and if you cant find the required movies then just dont return anything nor any message`;
+       and if you cant find the required movies then just return empty object, no other content should be returned`;
 
     //Fetch Movies list from geminin api
     const geminiResults = async () => {
