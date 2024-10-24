@@ -55,4 +55,4 @@ Start the server
 ```
 ## Screenshots
 
-(![Screenshot from 2024-10-24 11-03-46](https://github.com/user-attachments/assets/fe5f54ce-fba8-4310-aa68-45636e54a0d5))
+![Screenshot from 2024-10-24 11-03-46](https://github.com/user-attachments/assets/fe5f54ce-fba8-4310-aa68-45636e54a0d5)
