@@ -15,8 +15,6 @@ Built using React, TypeScript, and TailwindCSS, TasteFlix offers a sleek, respon
 1.  [Overview](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#tasteflix)
 2.  [Table of Contents](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#documentation)
 3.  [Getting Started](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#getting-started)
-    3a.  [Prerequisites](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#prerequisites)
-    3b.  [Environment Variables](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#environment-variables)
 4.  [Installation](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#installation)
 5.  [ScreenShots](https://github.com/sai-tanush/Netflix-GPT?tab=readme-ov-file#screenshots)
 
